@@ -1,0 +1,1832 @@
+{
+  "assessmentStructure": {
+    "local-gov": {
+      "Helpdesk": ["public-lokale-overheid", "helpdesk-vervolg", "ai-helpdesk"],
+      "Beheerder": ["intune-beheerder", "azure-beheerder", "ms365-beheerder-local-gov", "netwerkbeheerder"],
+      "Diensthoofd": ["ict-diensthoofd-local-gov"]
+    },
+    "kmo": {
+      "Helpdesk": ["helpdesk-kmo", "helpdesk-vervolg", "ai-helpdesk"],
+      "Beheerder": ["intune-beheerder", "azure-beheerder", "ms365-beheerder", "netwerkbeheerder"],
+      "Management": ["ict-diensthoofd"]
+    }
+  },
+  "assessments": {
+    "public-lokale-overheid": {
+      "title": "Helpdeskmedewerker",
+      "description": "Deze test bestaat uit 10 meerkeuzevragen over IT-helpdeskwerk bij lokale overheden in Vlaanderen.",
+      "role": "Helpdesk",
+      "sector": "local-gov",
+      "ctaLinks": [
+        { "label": "Helpdesk skills voor lokale overheden (5 dagen)", "url": "https://boostmeup.be/opleiding/helpdesk-skills-voor-lokale-overheden-5-dagen/" }
+      ],
+      "questions": [
+        {
+          "question": "Een medewerker van Burgerzaken krijgt bij het openen van \\\\fileserver\\burgerzaken de melding \"Access is denied\". Wat controleer je als eerste?",
+          "context": "Netwerkdrive – Access Denied (Burgerzaken)",
+          "domain": "Active Directory",
+          "options": [
+            { "id": "A", "text": "Of de map correct gedeeld is op de fileserver" },
+            { "id": "B", "text": "Of de gebruiker lid is van de juiste functiegroep in Active Directory" },
+            { "id": "C", "text": "Of de fileserver online is" },
+            { "id": "D", "text": "Of CEVI bereikbaar is" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Toegang wordt geregeld via functiegroepen in Active Directory. Dit is de eerste en meest logische check bij toegangsproblemen."
+        },
+        {
+          "question": "Je stelt vast dat meerdere medewerkers van Burgerzaken wel toegang hebben tot de map. Waar hoort de oplossing van dit probleem zich te bevinden?",
+          "context": "Netwerkdrive – waar los je dit op?",
+          "domain": "File Servers",
+          "options": [
+            { "id": "A", "text": "Op de werkpost van de gebruiker" },
+            { "id": "B", "text": "In de rechten van de map op de fileserver" },
+            { "id": "C", "text": "In de gebruikers- en groepsstructuur van het domein" },
+            { "id": "D", "text": "In de CEVI-toepassing" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Als andere medewerkers wel toegang hebben, ligt het probleem in de gebruikers- en groepsstructuur van het domein, niet bij de map zelf."
+        },
+        {
+          "question": "Welke actie lijkt snel, maar is fout IT-helpdeskgedrag?",
+          "context": "Netwerkdrive – verkeerde reflex",
+          "domain": "Active Directory",
+          "options": [
+            { "id": "A", "text": "De gebruiker toevoegen aan een functiegroep" },
+            { "id": "B", "text": "Toegang laten goedkeuren door de dienstverantwoordelijke" },
+            { "id": "C", "text": "Individuele rechten rechtstreeks toekennen op de map" },
+            { "id": "D", "text": "Rechten laten volgen door de rol van de gebruiker" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Individuele rechten rechtstreeks toekennen is fout. Rechten moeten via groepen beheerd worden voor onderhoudbaarheid en security."
+        },
+        {
+          "question": "Een medewerker verhuist van Financiën naar Burgerzaken. Hij meldt dat hij nog steeds toegang heeft tot financiële mappen. Wat is de juiste IT-actie?",
+          "context": "Functiewijziging – rechtenbeheer",
+          "domain": "Active Directory",
+          "options": [
+            { "id": "A", "text": "Oude rechten laten staan" },
+            { "id": "B", "text": "Enkel extra rechten toevoegen" },
+            { "id": "C", "text": "De medewerker uit oude functiegroepen verwijderen en toevoegen aan de juiste nieuwe" },
+            { "id": "D", "text": "De gebruiker lokale administrator maken" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Bij functiewijziging moeten oude rechten verwijderd worden (security/privacy) en de gebruiker moet toegevoegd worden aan de juiste nieuwe functiegroepen."
+        },
+        {
+          "question": "Een nieuwe medewerker start bij het OCMW en vraagt toegang tot OCMW-netwerkschijven en een CEVI-toepassing. Wat is correcte helpdesklogica?",
+          "context": "Nieuwe medewerker – OCMW",
+          "domain": "Active Directory",
+          "options": [
+            { "id": "A", "text": "Alles meteen toekennen" },
+            { "id": "B", "text": "Toegang geven op basis van functie en goedkeuring" },
+            { "id": "C", "text": "Toegang per applicatie individueel instellen" },
+            { "id": "D", "text": "Wachten tot er een probleem ontstaat" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Toegang moet functiegebonden zijn en goedgekeurd worden door de dienstverantwoordelijke. Dit volgt security- en AVG-principes."
+        },
+        {
+          "question": "In de bibliotheek werkt het wifi-netwerk voor personeel niet meer. Wat is je eerste technische check?",
+          "context": "Draadloos netwerk – Bibliotheek",
+          "domain": "Netwerken",
+          "options": [
+            { "id": "A", "text": "Rechtstreeks Telenet contacteren" },
+            { "id": "B", "text": "Controleren of het access point online is en voeding heeft" },
+            { "id": "C", "text": "CEVI contacteren" },
+            { "id": "D", "text": "De gebruikers laten overschakelen op 4G" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Altijd eerst lokaal controleren: stroom, verbinding, status van het access point voordat je externe partijen contacteert."
+        },
+        {
+          "question": "Meerdere access points zijn offline in het OCMW-gebouw. Wie contacteer je volgens correcte escalatie?",
+          "context": "Netwerkstoring – OCMW-gebouw",
+          "domain": "Netwerken",
+          "options": [
+            { "id": "A", "text": "Rechtstreeks Telenet" },
+            { "id": "B", "text": "CEVI" },
+            { "id": "C", "text": "De vaste ICT-partner van het lokaal bestuur" },
+            { "id": "D", "text": "De leverancier van de laptops" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Netwerkinfrastructuur valt onder de vaste ICT-partner van het bestuur. Escaleer via de juiste kanalen, niet rechtstreeks naar providers."
+        },
+        {
+          "question": "In een Woonzorgcentrum kan een medewerker niet inloggen op een CEVI-toepassing, maar internet en netwerkdrives werken wel. Wat controleer je eerst?",
+          "context": "Applicatie vs netwerk – Woonzorgcentrum",
+          "domain": "Troubleshooting",
+          "options": [
+            { "id": "A", "text": "Of de gebruiker correcte applicatierechten heeft" },
+            { "id": "B", "text": "Of Telenet een storing heeft" },
+            { "id": "C", "text": "Of het gebouw netwerk heeft" },
+            { "id": "D", "text": "Of het access point defect is" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "A",
+          "explanation": "Als internet en netwerkdrives werken, is het netwerk OK. Controleer eerst of de gebruiker de juiste applicatierechten heeft in CEVI."
+        },
+        {
+          "question": "Een volledige administratieve site heeft geen internetverbinding meer. Wat is de juiste volgorde?",
+          "context": "Volledige site zonder internet",
+          "domain": "Troubleshooting",
+          "options": [
+            { "id": "A", "text": "Meteen Telenet bellen" },
+            { "id": "B", "text": "Meteen CEVI bellen" },
+            { "id": "C", "text": "Eerst interne netwerkcontrole, daarna de ICT-partner" },
+            { "id": "D", "text": "De gebruikers laten afwachten" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Eerst intern uitsluiten (lokale netwerkcontrole), dan escaleren via de ICT-partner. Niet meteen externe partijen bellen."
+        },
+        {
+          "question": "In het administratief centrum werkt de interne applicatie \"VergunningenOnline\" normaal voor alle medewerkers. Vandaag belt een medewerker van het WZC dat hij de toepassing niet kan openen via de gebruikelijke link (http://vergunningen.wzc.local). De medewerker kan inloggen op zijn PC, internet werkt normaal, en hij kan de server bereiken via het IP-adres (http://10.20.3.45/vergunningen), maar niet via de servernaam. Andere medewerkers van het WZC hebben hetzelfde probleem, maar medewerkers van het administratief centrum hebben geen problemen. Wat is de meest logische eerste stap voor de helpdesk om dit probleem op te lossen?",
+          "context": "Case: Interne applicatie werkt niet via naam",
+          "domain": "DNS",
+          "options": [
+            { "id": "A", "text": "Controleren of de DNS-instellingen correct zijn en of de servernamen juist worden vertaald naar IP-adressen." },
+            { "id": "B", "text": "De DHCP-instellingen herstarten of controleren of de laptops een geldig IP-adres krijgen." },
+            { "id": "C", "text": "De applicatie opnieuw installeren op de laptops." },
+            { "id": "D", "text": "Alle WZC-gebruikers tijdelijke administratorrechten geven." },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "A",
+          "explanation": "Het probleem is dat de applicatie werkt via IP-adres maar niet via servernaam. Dit wijst op een DNS-probleem. DNS vertaalt servernamen naar IP-adressen, en als dat niet werkt, kan je de server niet bereiken via de naam."
+        }
+      ]
+    },
+    "helpdesk-kmo": {
+      "title": "Helpdeskmedewerker",
+      "description": "Deze test bestaat uit 10 meerkeuzevragen over IT-helpdeskwerk in een bedrijf of organisatie (KMO, VZW, enz.).",
+      "role": "Helpdesk",
+      "sector": "kmo",
+      "ctaLinks": [
+        { "label": "Groei als helpdeskmedewerker (5 dagen)", "url": "https://boostmeup.be/opleiding/groei-als-helpdeskmedewerker-5-dagen/" }
+      ],
+      "questions": [
+        {
+          "question": "Een medewerker van Sales krijgt bij het openen van \\\\fileserver\\sales de melding \"Access is denied\". Wat controleer je als eerste?",
+          "context": "Netwerkdrive – Access Denied",
+          "domain": "Active Directory",
+          "options": [
+            { "id": "A", "text": "Of de map correct gedeeld is op de fileserver" },
+            { "id": "B", "text": "Of de gebruiker lid is van de juiste functiegroep in Active Directory" },
+            { "id": "C", "text": "Of de fileserver online is" },
+            { "id": "D", "text": "Of de domeincontroller bereikbaar is" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Toegang wordt geregeld via functiegroepen in Active Directory. Dit is de eerste en meest logische check bij toegangsproblemen en het principe van AGDLP."
+        },
+        {
+          "question": "Je stelt vast dat meerdere medewerkers van Sales wel toegang hebben tot de map. Waar hoort de oplossing van dit probleem zich te bevinden?",
+          "context": "Netwerkdrive, waar los je dit op?",
+          "domain": "File Servers",
+          "options": [
+            { "id": "A", "text": "Op de werkpost van de gebruiker" },
+            { "id": "B", "text": "In de rechten van de map op de fileserver" },
+            { "id": "C", "text": "In de gebruikers- en groepsstructuur van het domein" },
+            { "id": "D", "text": "In de bedrijfsapplicatie (bijv. intranet)" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Als andere medewerkers wel toegang hebben, ligt het probleem in de gebruikers- en groepsstructuur van het domein, niet bij de map zelf."
+        },
+        {
+          "question": "Welke actie lijkt snel, maar is fout IT-helpdeskgedrag?",
+          "context": "Netwerkdrive – verkeerde reflex",
+          "domain": "Active Directory",
+          "options": [
+            { "id": "A", "text": "De gebruiker toevoegen aan een functiegroep" },
+            { "id": "B", "text": "Toegang laten goedkeuren door de afdelingsverantwoordelijke" },
+            { "id": "C", "text": "Individuele rechten rechtstreeks toekennen op de map" },
+            { "id": "D", "text": "Rechten laten volgen door de rol van de gebruiker" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Individuele rechten rechtstreeks toekennen is fout. Rechten moeten via groepen beheerd worden voor onderhoudbaarheid en security."
+        },
+        {
+          "question": "Een medewerker verhuist van Financiën naar Sales. Hij meldt dat hij nog steeds toegang heeft tot financiële mappen. Wat is de juiste IT-actie?",
+          "context": "Functiewijziging – rechtenbeheer",
+          "domain": "Active Directory",
+          "options": [
+            { "id": "A", "text": "Oude rechten laten staan" },
+            { "id": "B", "text": "Enkel extra rechten toevoegen" },
+            { "id": "C", "text": "De medewerker uit oude functiegroepen verwijderen en toevoegen aan de juiste nieuwe" },
+            { "id": "D", "text": "De gebruiker lokale administrator maken" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Bij functiewijziging moeten oude rechten verwijderd worden (security/privacy) en de gebruiker moet toegevoegd worden aan de juiste nieuwe functiegroepen."
+        },
+        {
+          "question": "Een nieuwe medewerker start bij de organisatie en vraagt toegang tot de netwerkschijven en een interne bedrijfsapplicatie. Wat is correcte helpdesklogica?",
+          "context": "Nieuwe medewerker",
+          "domain": "Active Directory",
+          "options": [
+            { "id": "A", "text": "Alles meteen toekennen" },
+            { "id": "B", "text": "Toegang geven op basis van functie en goedkeuring" },
+            { "id": "C", "text": "Toegang per applicatie individueel instellen" },
+            { "id": "D", "text": "Wachten tot er een probleem ontstaat" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Toegang moet functiegebonden zijn en goedgekeurd worden door de verantwoordelijke. Dit volgt security- en AVG-principes."
+        },
+        {
+          "question": "Een medewerker meldt dat hij geen internet heeft. Via ipconfig zie je dat zijn PC het IP-adres 169.254.10.5 heeft. Wat is je eerste logische stap?",
+          "context": "Geen internet – APIPA",
+          "domain": "Netwerken",
+          "options": [
+            { "id": "A", "text": "Controleren of de netwerkkabel goed is aangesloten en of de switchpoort link heeft (of de PC überhaupt het netwerk ziet)" },
+            { "id": "B", "text": "De DNS-server herstarten" },
+            { "id": "C", "text": "De gebruiker vragen om de PC opnieuw op te starten en af te wachten" },
+            { "id": "D", "text": "De internetprovider bellen" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "A",
+          "explanation": "169.254.x.x is een APIPA-adres: de PC krijgt geen antwoord van een DHCP-server. Eerst controleren of er netwerkconnectiviteit is (kabel, switchpoort, link). Daarna pas DHCP/DNS of andere oorzaken uitsluiten."
+        },
+        {
+          "question": "Een medewerker is verhuisd naar een ander bureau. Hij sluit zijn laptop met de netwerkkabel aan op de muurpoort in het nieuwe bureau, maar krijgt geen netwerk. Collega's op dezelfde verdieping hebben wel netwerk. Wat is je eerste logische stap?",
+          "context": "Geen netwerk na verhuizing bureau",
+          "domain": "Netwerken",
+          "options": [
+            { "id": "A", "text": "De netwerkkabel vervangen door een andere kabel" },
+            { "id": "B", "text": "Controleren of de switchpoort van die muurpoort actief is en eventueel het juiste VLAN heeft" },
+            { "id": "C", "text": "De laptop opnieuw opstarten" },
+            { "id": "D", "text": "De internetprovider bellen" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Na een verhuizing is vaak de switchpoort van de nieuwe muurpoort nog niet geconfigureerd, uitgeschakeld (disabled) of in een ander VLAN. Dat controleer je eerst voordat je hardware vervangt of extern inschakelt."
+        },
+        {
+          "question": "Op een vestiging kan een medewerker niet inloggen op een interne bedrijfsapplicatie, maar internet en netwerkdrives werken wel. Wat controleer je eerst?",
+          "context": "Applicatie vs netwerk – vestiging",
+          "domain": "Troubleshooting",
+          "options": [
+            { "id": "A", "text": "Of de gebruiker correcte applicatierechten heeft" },
+            { "id": "B", "text": "Of de internetprovider een storing heeft" },
+            { "id": "C", "text": "Of het gebouw netwerk heeft" },
+            { "id": "D", "text": "Of het access point defect is" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "A",
+          "explanation": "Als internet en netwerkdrives werken, is het netwerk in orde. Controleer eerst of de gebruiker de juiste applicatierechten heeft."
+        },
+        {
+          "question": "Een volledige vestiging heeft geen internetverbinding meer. Jij bent verantwoordelijk voor de IT. Wat is de juiste volgorde?",
+          "context": "Volledige vestiging zonder internet – jij bent verantwoordelijk",
+          "domain": "Troubleshooting",
+          "options": [
+            { "id": "A", "text": "Meteen de provider bellen" },
+            { "id": "B", "text": "Meteen een externe IT-partij inschakelen" },
+            { "id": "C", "text": "Eerst zelf controleren (modem, router, bekabeling, interne netwerkcontrole); daarna pas de provider inschakelen als het probleem daar ligt" },
+            { "id": "D", "text": "De gebruikers laten afwachten" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Eerst zelf uitsluiten wat lokaal kan (modem, router, bekabeling). Alleen als het probleem bij de verbinding of de provider hoort, schakel je de provider in."
+        },
+        {
+          "question": "In het hoofdkantoor werkt de interne applicatie (CRM-toepassing) normaal voor alle medewerkers. Vandaag belt een medewerker van een vestiging dat hij de toepassing niet kan openen via de gebruikelijke link (bijv. http://CRM.vestiging.lokaal). De medewerker kan inloggen op zijn PC, internet werkt normaal, en hij kan de server bereiken via het IP-adres (bijv. http://10.20.3.45/CRM), maar niet via de servernaam. Andere medewerkers van de vestiging hebben hetzelfde probleem; medewerkers van het hoofdkantoor niet. Wat is de meest logische eerste stap voor de helpdesk?",
+          "context": "Interne applicatie werkt niet via naam",
+          "domain": "DNS",
+          "options": [
+            { "id": "A", "text": "Controleren of de DNS-instellingen correct zijn en of de servernamen juist worden vertaald naar IP-adressen." },
+            { "id": "B", "text": "De DHCP-instellingen herstarten of controleren of de pc's een geldig IP-adres krijgen." },
+            { "id": "C", "text": "De applicatie opnieuw installeren op de pc's." },
+            { "id": "D", "text": "Alle vestigingsgebruikers tijdelijke administratorrechten geven." },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "A",
+          "explanation": "Het probleem is dat de applicatie werkt via IP-adres maar niet via servernaam. Dat wijst op een DNS-probleem. DNS vertaalt servernamen naar IP-adressen; als dat niet werkt, kan de server niet via de naam bereikt worden."
+        }
+      ]
+    },
+    "helpdesk-vervolg": {
+      "title": "Helpdeskmedewerker Vervolg",
+      "description": "Deze test bestaat uit 15 meerkeuzevragen over geavanceerde IT-helpdesk onderwerpen zoals PowerShell, WiFi, Microsoft 365, Intune, Azure en Entra ID.",
+      "role": "Helpdesk",
+      "sector": "both",
+      "ctaLinks": [
+        { "label": "Groei als professioneel helpdeskmedewerker (7 dagen)", "url": "https://boostmeup.be/opleiding/groei-als-professioneel-helpdeskmedewerker-7-dagen/" }
+      ],
+      "questions": [
+        {
+          "question": "PowerShell: Je wilt via PowerShell op meerdere domein-PC's controleren welke gebruikers hun wachtwoord al meer dan 30 dagen niet hebben gewijzigd. Welke cmdlet en parameter combineer je?",
+          "context": "PowerShell",
+          "domain": "PowerShell",
+          "options": [
+            { "id": "A", "text": "Get-ADUser -Filter * -Properties PasswordLastSet | Where-Object {$_.PasswordLastSet -lt (Get-Date).AddDays(-30)}" },
+            { "id": "B", "text": "Get-ADComputer -Filter * | Select-Object Name, LastLogonDate" },
+            { "id": "C", "text": "Get-LocalUser | Where-Object {$_.PasswordExpired -eq $true}" },
+            { "id": "D", "text": "Get-EventLog -LogName Security -InstanceId 4723" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "A",
+          "explanation": "Get-ADUser met -Properties PasswordLastSet en een Where-Object filter is de correcte manier om gebruikers te vinden die hun wachtwoord langer dan 30 dagen geleden hebben gewijzigd."
+        },
+        {
+          "question": "PowerShell / Troubleshooting: Een script dat software moet installeren op 20 laptops geeft foutmeldingen bij 5 apparaten. Wat is de beste vervolgstap?",
+          "context": "PowerShell / Troubleshooting",
+          "domain": "PowerShell",
+          "options": [
+            { "id": "A", "text": "Gebruik -Verbose en -ErrorAction in het script om foutmeldingen te analyseren" },
+            { "id": "B", "text": "Installeer software handmatig op de 5 laptops" },
+            { "id": "C", "text": "Herstart alle laptops" },
+            { "id": "D", "text": "Neem contact op met CEVI" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "A",
+          "explanation": "Verbose logging en ErrorAction parameters helpen om de exacte foutmeldingen te identificeren en te analyseren, wat essentieel is voor troubleshooting."
+        },
+        {
+          "question": "WiFi: In het OCMW-gebouw melden 3 laptops dat ze geen interne wifi hebben, anderen wel. Wat is de meest waarschijnlijke oorzaak?",
+          "context": "WiFi",
+          "domain": "WiFi",
+          "options": [
+            { "id": "A", "text": "De laptops zitten in een verkeerd VLAN of hebben verkeerde IP-configuratie" },
+            { "id": "B", "text": "Het wifi-wachtwoord is veranderd" },
+            { "id": "C", "text": "De access point firmware is verouderd" },
+            { "id": "D", "text": "Teams werkt niet" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "A",
+          "explanation": "Als alleen enkele laptops problemen hebben terwijl anderen wel werken, wijst dit op een configuratieprobleem (VLAN of IP) op die specifieke apparaten."
+        },
+        {
+          "question": "WiFi / Troubleshooting: Het gast-wifi netwerk van een bibliotheek werkt, maar bezoekers kunnen interne gedeelde mappen benaderen. Wat is de correcte actie?",
+          "context": "WiFi / Troubleshooting",
+          "domain": "WiFi",
+          "options": [
+            { "id": "A", "text": "Configureer een guest-VLAN met interne netwerktoegang geblokkeerd" },
+            { "id": "B", "text": "Verwijder gastaccounts" },
+            { "id": "C", "text": "Blokkeer gast-laptops lokaal" },
+            { "id": "D", "text": "Herstart alle access points" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "A",
+          "explanation": "Een guest-VLAN moet geïsoleerd zijn van het interne netwerk voor security. Dit is de correcte netwerkarchitectuur voor gasttoegang."
+        },
+        {
+          "question": "Microsoft 365 / Troubleshooting: Een medewerker kan bestanden niet synchroniseren met OneDrive. Andere collega's hebben geen probleem. Wat controleer je eerst?",
+          "context": "Microsoft 365 / Troubleshooting",
+          "domain": "Microsoft 365",
+          "options": [
+            { "id": "A", "text": "Of het device compliant is in Intune (policies, encryptie)" },
+            { "id": "B", "text": "Of Outlook werkt" },
+            { "id": "C", "text": "Of Teams online werkt" },
+            { "id": "D", "text": "Of CEVI bereikbaar is" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "A",
+          "explanation": "Device compliance en Intune policies kunnen OneDrive synchronisatie blokkeren. Dit is de eerste logische check bij device-specifieke problemen."
+        },
+        {
+          "question": "Microsoft 365 / Case: Een team werkt tegelijk aan een document maar krijgt regelmatig conflicten. Wat is de meest waarschijnlijke oorzaak?",
+          "context": "Microsoft 365 / Case",
+          "domain": "Microsoft 365",
+          "options": [
+            { "id": "A", "text": "Ze werken offline in Word, niet in Word Online / SharePoint" },
+            { "id": "B", "text": "Teams is niet geüpdatet" },
+            { "id": "C", "text": "Outlook werkt niet" },
+            { "id": "D", "text": "Wifi is traag" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "A",
+          "explanation": "Offline werken in Word veroorzaakt conflicten. Word Online of SharePoint Online voorkomt dit door real-time co-authoring."
+        },
+        {
+          "question": "Intune: Een nieuwe laptop verschijnt niet in Intune en kan geen applicaties ontvangen. De laptop heeft wel internet. Wat controleer je eerst?",
+          "context": "Intune",
+          "domain": "Intune",
+          "options": [
+            { "id": "A", "text": "Is het device correct ingeschreven in Intune en lid van de juiste groep?" },
+            { "id": "B", "text": "Wifi verbinding" },
+            { "id": "C", "text": "Office is geïnstalleerd" },
+            { "id": "D", "text": "Printer driver ontbreekt" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "A",
+          "explanation": "Device enrollment en groepslidmaatschap zijn essentieel voor Intune functionaliteit. Dit is de eerste check."
+        },
+        {
+          "question": "Intune / Troubleshooting: Je pusht een applicatie via Intune, maar 10 van de 50 laptops installeren de app niet. Wat is de beste vervolgstap?",
+          "context": "Intune / Troubleshooting",
+          "domain": "Intune",
+          "options": [
+            { "id": "A", "text": "Controleer logs op apparaatniveau in Intune portal voor installatiefouten" },
+            { "id": "B", "text": "CEVI bellen" },
+            { "id": "C", "text": "App handmatig installeren" },
+            { "id": "D", "text": "Alle laptops herstarten" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "A",
+          "explanation": "Intune logs bevatten gedetailleerde foutmeldingen per device. Dit is de correcte troubleshooting aanpak."
+        },
+        {
+          "question": "Azure: Je wilt dat medewerkers alleen kunnen inloggen op cloudapplicaties vanuit kantoor, niet extern. Welke Azure-functie gebruik je?",
+          "context": "Azure",
+          "domain": "Azure",
+          "options": [
+            { "id": "A", "text": "Conditional Access policies met locatie-restricties" },
+            { "id": "B", "text": "MFA uitschakelen" },
+            { "id": "C", "text": "Exchange mailbox instellen" },
+            { "id": "D", "text": "Teams restricties toepassen" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "A",
+          "explanation": "Conditional Access policies met named locations kunnen toegang beperken tot specifieke locaties (zoals kantoor IP-adressen)."
+        },
+        {
+          "question": "Azure / Troubleshooting: Een VM is bereikbaar via IP, maar RDP werkt niet. Wat controleer je eerst?",
+          "context": "Azure / Troubleshooting",
+          "domain": "Azure",
+          "options": [
+            { "id": "A", "text": "Network Security Group / Firewall regels voor RDP" },
+            { "id": "B", "text": "Wifi herstarten" },
+            { "id": "C", "text": "CEVI bellen" },
+            { "id": "D", "text": "Teams afsluiten" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "A",
+          "explanation": "NSG regels controleren netwerkverkeer. RDP (poort 3389) moet expliciet toegestaan zijn in de NSG regels."
+        },
+        {
+          "question": "Entra / Identity: Nieuwe medewerker start bij de gemeente. Wat is de veiligste manier om hem toegang te geven tot cloudapplicaties?",
+          "context": "Entra / Identity",
+          "domain": "Entra ID",
+          "options": [
+            { "id": "A", "text": "Account aanmaken in Entra met MFA verplicht en juiste groepstoegang" },
+            { "id": "B", "text": "Account met lokale adminrechten" },
+            { "id": "C", "text": "Toegang via gedeeld wachtwoord" },
+            { "id": "D", "text": "Account in Excel-lijst" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "A",
+          "explanation": "Entra ID met MFA en role-based groepstoegang is de veiligste en best practice aanpak voor cloud identity management."
+        },
+        {
+          "question": "Entra / Troubleshooting: Medewerker heeft te veel rechten via meerdere groepen. Wat is de correcte actie?",
+          "context": "Entra / Troubleshooting",
+          "domain": "Entra ID",
+          "options": [
+            { "id": "A", "text": "Rechten afbouwen en groepen herzien volgens rol-based access" },
+            { "id": "B", "text": "Account verwijderen" },
+            { "id": "C", "text": "Lokale admin rechten geven" },
+            { "id": "D", "text": "Wachten tot de gebruiker een probleem meldt" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "A",
+          "explanation": "Principle of least privilege: rechten moeten minimaal zijn en gebaseerd op rol. Groepen moeten herzien worden."
+        },
+        {
+          "question": "IT1-MS365: SharePoint documenten openen lukt niet vanaf 2 laptops, maar collega's hebben geen probleem. Wat controleer je eerst?",
+          "context": "IT1-MS365",
+          "domain": "Microsoft 365",
+          "options": [
+            { "id": "A", "text": "Device compliance in Intune en policies voor SharePoint" },
+            { "id": "B", "text": "CEVI bereikbaar?" },
+            { "id": "C", "text": "Teams online" },
+            { "id": "D", "text": "Printer aangesloten?" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "A",
+          "explanation": "Device compliance en conditional access policies kunnen SharePoint toegang blokkeren voor niet-compliant devices."
+        },
+        {
+          "question": "IT1-MS365 / Troubleshooting: Teams vergadering kan niet starten op één laptop, anderen wel. Wat check je eerst?",
+          "context": "IT1-MS365 / Troubleshooting",
+          "domain": "Microsoft 365",
+          "options": [
+            { "id": "A", "text": "Device compliance, internetconnectiviteit en policies" },
+            { "id": "B", "text": "Teams herinstalleren" },
+            { "id": "C", "text": "Wifi herstarten" },
+            { "id": "D", "text": "CEVI bellen" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "A",
+          "explanation": "Device compliance, netwerkconnectiviteit en conditional access policies kunnen Teams functionaliteit beïnvloeden."
+        },
+        {
+          "question": "PowerShell + Intune / Troubleshooting: Je wilt via PowerShell controleren welke updates recent op remote machines zijn geïnstalleerd. Welke cmdlet gebruik je?",
+          "context": "PowerShell + Intune / Troubleshooting",
+          "domain": "PowerShell",
+          "options": [
+            { "id": "A", "text": "Get-HotFix" },
+            { "id": "B", "text": "Get-Updates" },
+            { "id": "C", "text": "Get-Process" },
+            { "id": "D", "text": "Show-Events" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "A",
+          "explanation": "Get-HotFix toont geïnstalleerde Windows updates (hotfixes) op lokale of remote machines."
+        }
+      ]
+    },
+    "intune-beheerder": {
+      "title": "Intune Beheerder",
+      "description": "Assessment voor Intune beheerders (Endpoint Manager). Test je kennis over deployment (Autopilot), configuratie, compliance, app management en MAM.",
+      "role": "Beheerder",
+      "sector": "both",
+      "ctaLinks": [
+        { "label": "MD-102: Microsoft 365 Endpoint Administrator (5 dagen)", "url": "https://boostmeup.be/opleiding/md-102-microsoft-365-endpoint-administrator-5-dagen/" },
+        { "label": "Groei als professioneel Microsoft Intune Beheerder (6 dagen)", "url": "https://boostmeup.be/opleiding/groei-als-professioneel-microsoft-intune-beheerder-6-dagen/" }
+      ],
+      "questions": [
+        {
+          "question": "Je wilt 50 nieuwe laptops uitrollen voor \"kiosk\"-gebruik in de ontvangsthal. Deze toestellen moeten automatisch inloggen met een vast account en mogen geen gebruikersinteractie vereisen tijdens de installatie (OOBE). Welke Autopilot-modus selecteer je in het deployment profiel?",
+          "context": "Autopilot – kiosk ontvangsthal",
+          "domain": "Deployment & Autopilot",
+          "options": [
+            { "id": "A", "text": "User-Driven Mode" },
+            { "id": "B", "text": "Self-Deploying Mode" },
+            { "id": "C", "text": "Pre-Provisioned Deployment (White Glove)" },
+            { "id": "D", "text": "Hybrid Join Mode" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Self-Deploying Mode is specifiek ontworpen voor kiosk-toestellen of shared devices waarbij geen user credentials nodig zijn tijdens de setup."
+        },
+        {
+          "question": "Een leverancier stuurt laptops rechtstreeks naar de eindgebruikers. Om Autopilot te laten werken, moet de leverancier (of jijzelf) een unieke identificatie van het toestel uploaden in de Intune-portal. Hoe heet deze hardware-identificatie?",
+          "context": "Autopilot – registratie toestel",
+          "domain": "Deployment & Autopilot",
+          "options": [
+            { "id": "A", "text": "MAC Address" },
+            { "id": "B", "text": "Serial Number" },
+            { "id": "C", "text": "Hardware Hash" },
+            { "id": "D", "text": "GUID" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Voor Autopilot registratie is de Hardware Hash (4K HH) vereist om het toestel uniek te koppelen aan jouw tenant."
+        },
+        {
+          "question": "Tijdens de Autopilot-installatie krijgt een gebruiker een foutmelding. Je vraagt hem om diagnostics te draaien. Welke toetsencombinatie opent een command prompt tijdens de OOBE (Out of Box Experience) zodat je logs kunt bekijken of het Get-AutoPilotDiagnostics script kunt draaien?",
+          "context": "Autopilot Troubleshooting – OOBE",
+          "domain": "Deployment & Autopilot",
+          "options": [
+            { "id": "A", "text": "Ctrl + Alt + Delete" },
+            { "id": "B", "text": "Shift + F10" },
+            { "id": "C", "text": "Windows + R" },
+            { "id": "D", "text": "F12" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Shift + F10 opent de command prompt tijdens de setup, waarmee je troubleshooting scripts zoals Get-AutoPilotDiagnostics kunt starten."
+        },
+        {
+          "question": "Je organisatie komt van een traditionele on-premise omgeving met honderden Group Policies (GPO's). Je wilt weten welke van deze instellingen ondersteund worden in Intune voordat je migreert. Welke tool in Intune gebruik je voor deze analyse?",
+          "context": "Configuration – GPO-migratie",
+          "domain": "Configuration & Migration",
+          "options": [
+            { "id": "A", "text": "Security Baselines" },
+            { "id": "B", "text": "Group Policy Analytics" },
+            { "id": "C", "text": "Compliance Policies" },
+            { "id": "D", "text": "Configuration Profiles" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Group Policy Analytics is de tool om on-premise GPO's te importeren en te analyseren of ze gemigreerd kunnen worden naar MDM-settings."
+        },
+        {
+          "question": "Je wilt een specifieke instelling wijzigen in het Windows Register die (nog) niet beschikbaar is in de standaard Intune-catalogus (Settings Catalog). Welk type configuratieprofiel gebruik je om \"custom\" settings te pushen via OMA-URI?",
+          "context": "Configuration – register/OMA-URI",
+          "domain": "Configuration & Migration",
+          "options": [
+            { "id": "A", "text": "Administrative Templates" },
+            { "id": "B", "text": "Custom Profile" },
+            { "id": "C", "text": "Device Restrictions" },
+            { "id": "D", "text": "Endpoint Protection" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Custom Profiles laten je toe om specifieke OMA-URI waarden te configureren voor settings die niet in de GUI beschikbaar zijn."
+        },
+        {
+          "question": "Je wilt dat enkel toestellen die BitLocker-encryptie aan hebben staan, toegang krijgen tot SharePoint. Hoe bouw je deze flow op?",
+          "context": "Compliance – BitLocker + SharePoint",
+          "domain": "Compliance & Security",
+          "options": [
+            { "id": "A", "text": "Je maakt enkel een Configuration Profile aan." },
+            { "id": "B", "text": "Je maakt een Compliance Policy (Bitlocker = required) én een Conditional Access Policy (Require compliant device)." },
+            { "id": "C", "text": "Je gebruikt App Protection Policies." },
+            { "id": "D", "text": "Je blokkeert niet-versleutelde schijven via de firewall." },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "De Compliance Policy meet de status (is Bitlocker aan?), en de Conditional Access Policy dwingt de toegang af op basis van die status."
+        },
+        {
+          "question": "Een gebruiker heeft zijn antivirus uitgezet, waardoor zijn toestel de status \"Non-Compliant\" krijgt. Hij zet de antivirus terug aan. Wat gebeurt er met de status?",
+          "context": "Compliance – antivirus weer aan",
+          "domain": "Compliance & Security",
+          "options": [
+            { "id": "A", "text": "Het toestel is onmiddellijk weer compliant." },
+            { "id": "B", "text": "Het toestel blijft 7 dagen in quarantaine." },
+            { "id": "C", "text": "Het toestel wordt compliant bij de volgende check-in (sync), waarna de toegang hersteld wordt." },
+            { "id": "D", "text": "De beheerder moet het toestel handmatig deblokkeren." },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Zodra het probleem is opgelost en het toestel incheckt (check-in), evalueert Intune de status opnieuw naar \"Compliant\"."
+        },
+        {
+          "question": "Je maakt een compliance policy die vereist dat het OS minimaal versie \"Windows 10 21H2\" is. Een gebruiker heeft nog een oudere versie. Je wilt hem niet direct blokkeren, maar hem 3 dagen de tijd geven om te updaten. Hoe heet deze instelling?",
+          "context": "Compliance – uitstel voor OS-versie",
+          "domain": "Compliance & Security",
+          "options": [
+            { "id": "A", "text": "Grace Period (Actions for non-compliance)" },
+            { "id": "B", "text": "Conditional Access Time-out" },
+            { "id": "C", "text": "Deferral Policy" },
+            { "id": "D", "text": "Update Ring" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "A",
+          "explanation": "In de \"Actions for non-compliance\" kun je instellen dat een toestel pas na een bepaald aantal dagen (Grace Period) als non-compliant wordt gemarkeerd."
+        },
+        {
+          "question": "Je wilt \"Adobe Reader\" installeren op alle toestellen en deze automatisch up-to-date houden zonder zelf steeds nieuwe packages te maken. Je wilt gebruik maken van de moderne repository van Microsoft. Welke tool/feature gebruik je?",
+          "context": "Apps – Adobe Reader, automatisch updaten",
+          "domain": "Application Management",
+          "options": [
+            { "id": "A", "text": "MSI Deployment" },
+            { "id": "B", "text": "Windows Package Manager (Winget)" },
+            { "id": "C", "text": "PowerShell scripts" },
+            { "id": "D", "text": "Microsoft store" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "De Microsoft Store (new) / Windows Package Manager (Winget) maakt gebruik van de Winget-repository en houdt apps automatisch up-to-date."
+        },
+        {
+          "question": "Je wilt de applicatie \"Visio\" beschikbaar maken voor de afdeling Finance, maar niet verplicht installeren. Ze moeten het zelf kunnen installeren als ze het nodig hebben. Welk \"Assignment\" type kies je?",
+          "context": "Apps – Visio voor Finance",
+          "domain": "Application Management",
+          "options": [
+            { "id": "A", "text": "Required" },
+            { "id": "B", "text": "Uninstall" },
+            { "id": "C", "text": "Available for enrolled devices" },
+            { "id": "D", "text": "Not Applicable" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Bij \"Available\" verschijnt de app in de Company Portal (Bedrijfsportal) en kan de gebruiker zelf kiezen om te installeren."
+        },
+        {
+          "question": "Een externe consultant wil zijn privé smartphone gebruiken om zakelijke mails te lezen via Outlook. Jij wilt dit toestaan, maar je wilt absoluut niet zijn hele toestel beheren (geen enrollment). Wel wil je beletten dat hij tekst uit een zakelijke mail kopieert naar zijn privé WhatsApp. Welke policy gebruik je?",
+          "context": "MAM – privé smartphone, geen kopiëren",
+          "domain": "App Protection (MAM) & BYOD",
+          "options": [
+            { "id": "A", "text": "Device Compliance Policy" },
+            { "id": "B", "text": "Device Configuration Profile" },
+            { "id": "C", "text": "App Protection Policy (MAM)" },
+            { "id": "D", "text": "App Configuration Policy" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "App Protection Policies (MAM) beheren de data binnen de app (containerisatie) en kunnen acties zoals \"knippen/plakken\" beperken zonder het toestel zelf te beheren."
+        },
+        {
+          "question": "Je bedrijf heeft een lokale Active Directory. Je wilt nieuwe Windows 11 laptops uitrollen die volledig via de cloud beheerd worden (Intune), maar gebruikers moeten wel nog kunnen inloggen op legacy on-premise servers (via Kerberos). Welk type \"Join\" wordt door Microsoft aanbevolen als de moderne standaard voor nieuwe toestellen?",
+          "context": "Fundamentals – cloud + on-prem",
+          "domain": "Fundamentals & Architecture",
+          "options": [
+            { "id": "A", "text": "On-premises AD Joined" },
+            { "id": "B", "text": "Entra ID Joined (voorheen Azure AD Joined)" },
+            { "id": "C", "text": "Entra ID Hybrid Joined" },
+            { "id": "D", "text": "Workplace Joined" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Entra ID Joined is de \"cloud-native\" standaard. Deze toestellen kunnen nog steeds SSO (Single Sign-On) krijgen naar on-premise resources (via Kerberos Cloud Trust), zonder lid te zijn van de on-prem AD."
+        },
+        {
+          "question": "Wat is het fundamentele verschil tussen MDM (Mobile Device Management) en MAM (Mobile Application Management)?",
+          "context": "Fundamentals – MDM vs MAM",
+          "domain": "Fundamentals & Architecture",
+          "options": [
+            { "id": "A", "text": "MDM beheert het hele toestel, MAM beheert enkel de applicatie en data." },
+            { "id": "B", "text": "MDM is voor Windows, MAM is voor iOS." },
+            { "id": "C", "text": "MAM is veiliger dan MDM." },
+            { "id": "D", "text": "Er is geen verschil, het zijn synoniemen." },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "A",
+          "explanation": "MDM vereist enrollment en geeft controle over het OS. MAM (App Protection) werkt zonder enrollment en focust op databeveiliging binnen de app."
+        },
+        {
+          "question": "Je wilt voorkomen dat gebruikers met een \"Jailbroken\" of \"Rooted\" smartphone toegang krijgen tot bedrijfsdata, omdat dit een groot risico vormt. Waar stel je deze detectie in?",
+          "context": "Conditional Access – Jailbroken/Rooted",
+          "domain": "Compliance & Security",
+          "options": [
+            { "id": "A", "text": "In de Compliance Policy (Device Health)." },
+            { "id": "B", "text": "In de Firewall settings." },
+            { "id": "C", "text": "In de Autopilot settings." },
+            { "id": "D", "text": "In de Active Directory Users & Computers." },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "A",
+          "explanation": "Compliance policies hebben specifieke settings voor \"Device Health\" waarmee je rooted/jailbroken toestellen als non-compliant kunt markeren."
+        },
+        {
+          "question": "Welke licentie heb je minimaal nodig voor een gebruiker om gebruik te kunnen maken van Intune en Autopilot features?",
+          "context": "Licensing – Intune/Autopilot",
+          "domain": "Fundamentals & Architecture",
+          "options": [
+            { "id": "A", "text": "Office 365 E3" },
+            { "id": "B", "text": "Microsoft 365 Business Premium (of E3/E5)" },
+            { "id": "C", "text": "Windows 10 Home licentie" },
+            { "id": "D", "text": "Azure AD Free" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Intune zit in de EMS (Enterprise Mobility + Security) suite, die onderdeel is van Microsoft 365 Business Premium, E3 of E5. Office 365 E3 bevat géén Intune."
+        }
+      ]
+    },
+    "azure-beheerder": {
+      "title": "Azure Beheerder",
+      "description": "Assessment voor Azure beheerders. Test je kennis over Azure services, resource management, security, networking en best practices.",
+      "role": "Beheerder",
+      "sector": "both",
+      "ctaLinks": [
+        { "label": "Groei als professional Microsoft Azure Beheerder (7 dagen)", "url": "https://boostmeup.be/opleiding/groei-als-professional-microsoft-azure-beheerder-7-dagen/" }
+      ],
+      "questions": [
+        {
+          "question": "Je wilt de kosten van Azure resources monitoren. Welke Azure service gebruik je hiervoor?",
+          "context": "Azure Cost Management",
+          "domain": "Azure",
+          "options": [
+            { "id": "A", "text": "Azure Monitor" },
+            { "id": "B", "text": "Azure Cost Management + Billing" },
+            { "id": "C", "text": "Azure Security Center" },
+            { "id": "D", "text": "Azure Active Directory" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Azure Cost Management + Billing is de service specifiek ontworpen voor het monitoren, analyseren en optimaliseren van Azure kosten."
+        }
+      ]
+    },
+    "ms365-beheerder": {
+      "title": "MS365 Beheerder",
+      "description": "Assessment voor Microsoft 365 beheerders. Test je kennis over Exchange Online, SharePoint, Teams, security en compliance in Microsoft 365.",
+      "role": "Beheerder",
+      "sector": "both",
+      "ctaLinks": [
+        { "label": "MS-102: Microsoft 365 Administrator (5 dagen)", "url": "https://boostmeup.be/opleiding/ms-102-microsoft-365-administrator-5-dagen/" },
+        { "label": "Groei als professioneel Microsoft 365 Beheerder (6 dagen)", "url": "https://boostmeup.be/opleiding/groei-als-professioneel-microsoft-365-beheerder-6-dagen/" }
+      ],
+      "questions": [
+        {
+          "question": "Een bedrijf heeft een complexe on-premises omgeving met meerdere geïsoleerde Active Directory forests waartussen geen trust-relatie bestaat. Ze willen snel starten met het synchroniseren van gebruikers naar de cloud met minimale infrastructuur. Welke synchronisatietool adviseer je?",
+          "context": "Entra ID - Synchronisatie meerdere forests",
+          "domain": "Entra ID",
+          "options": [
+            { "id": "A", "text": "Microsoft Entra Connect" },
+            { "id": "B", "text": "Microsoft Entra Cloud Sync" },
+            { "id": "C", "text": "Active Directory Federation Services (ADFS)" },
+            { "id": "D", "text": "Manuele export/import via CSV" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Cloud Sync is de aanbevolen tool voor meerdere geïsoleerde forests zonder trust-relatie en voor wie minimale infrastructuur wil."
+        },
+        {
+          "question": "De HR-afdeling vraagt om een groep \"Verkopers\" die altijd automatisch up-to-date is. Zodra een nieuwe medewerker in dienst komt met de functietitel \"Sales\", moet deze automatisch lid worden van de groep. Randvoorwaarden: De groep wordt gebruikt voor toegang tot applicaties, beheer moet zo efficiënt mogelijk zijn, er mag geen periodiek script nodig zijn, en de functietitel is beschikbaar in Entra ID. Welke oplossing voldoet het beste aan deze eisen?",
+          "context": "Entra ID - Dynamische groepen",
+          "domain": "Entra ID",
+          "options": [
+            { "id": "A", "text": "Een Security Group met Assigned membership, waarbij een Microsoft Graph PowerShell script elk uur draait om gebruikers met jobTitle = \"Sales\" toe te voegen." },
+            { "id": "B", "text": "Een Microsoft 365 Group met Dynamic User membership, met de regel: (user.jobTitle -contains \"Sales\")" },
+            { "id": "C", "text": "Een Security Group met Dynamic User membership, met een dynamische regel gebaseerd op jobTitle." },
+            { "id": "D", "text": "Een Security Group met Dynamic User membership, waarbij het lidmaatschap wordt bepaald door een extensionAttribute dat via PowerShell (Microsoft Graph) wordt gevuld." },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Security Group met Dynamic User membership is de beste oplossing. Het lidmaatschap wordt automatisch bijgewerkt zonder scripts, is efficiënt te beheren en werkt direct met jobTitle attributen uit Entra ID."
+        },
+        {
+          "question": "Je wilt Multi-Factor Authenticatie (MFA) afdwingen voor alle gebruikers, behalve wanneer ze zich fysiek in het hoofdkantoor bevinden (een vertrouwd IP-adres). Welke feature binnen Entra ID configureer je hiervoor?",
+          "context": "Entra ID - Conditional Access",
+          "domain": "Entra ID",
+          "options": [
+            { "id": "A", "text": "Identity Protection" },
+            { "id": "B", "text": "Self-Service Password Reset (SSPR)" },
+            { "id": "C", "text": "Conditional Access Policy" },
+            { "id": "D", "text": "Per-user MFA settings" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Conditional Access laat toe om voorwaarden te stellen (zoals locatie/netwerk) om toegang te verlenen (Grant) of MFA te eisen."
+        },
+        {
+          "question": "De CEO, Jan Janssens, meldt dat externe partijen e-mails ontvangen die van hem lijken te komen, maar verzonden zijn vanaf een adres zoals jan.janssens@micr0soft.com (met een nul). Welke policy moet je finetunen om dit specifieke gedrag tegen te gaan?",
+          "context": "Microsoft Defender for Office 365 - Impersonation",
+          "domain": "Defender",
+          "options": [
+            { "id": "A", "text": "Anti-Malware Policy" },
+            { "id": "B", "text": "Anti-Phishing Policy (Impersonation protection)" },
+            { "id": "C", "text": "Safe Links Policy" },
+            { "id": "D", "text": "Anti-Spam Policy (BCL thresholds)" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Anti-Phishing policies bieden specifieke bescherming tegen gebruikers- en domeinimitatie (impersonation), waarbij namen of domeinen worden nagebootst."
+        },
+        {
+          "question": "De marketingafdeling wil de externe tool Flexmail gebruiken om nieuwsbrieven te versturen namens jullie eigen domein. De organisatie gebruikt Microsoft 365 (Exchange Online) voor e-mail. Eisen: Nieuwsbrieven mogen niet in de spamfolder belanden, de oplossing moet RFC-conform zijn, er mag slechts één SPF-record voor het domein bestaan, en de configuratie moet onderhoudsarm en toekomstbestendig zijn. Welke SPF-configuratie is in deze situatie het meest correct?",
+          "context": "Email Security - SPF configuratie",
+          "domain": "Defender",
+          "options": [
+            { "id": "A", "text": "v=spf1 include:spf.protection.outlook.com -all" },
+            { "id": "B", "text": "v=spf1 include:spf.protection.outlook.com include:_spf.flexmail.eu -all" },
+            { "id": "C", "text": "v=spf1 include:spf.protection.outlook.com ip4:185.35.64.0/22 -all" },
+            { "id": "D", "text": "Maak twee afzonderlijke TXT-records aan: één voor Microsoft 365 en één voor Flexmail." },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "De juiste SPF-configuratie combineert beide includes in één record: v=spf1 include:spf.protection.outlook.com include:_spf.flexmail.eu -all. Dit is RFC-conform, onderhoudsarm en toekomstbestendig."
+        },
+        {
+          "question": "Een gebruiker meldt dat hij een e-mail heeft ontvangen waarbij de bijlage ontbreekt, maar er staat een melding dat de bijlage nog wordt gescand. Een minuut later verschijnt de bijlage alsnog. Welke feature is hier aan het werk?",
+          "context": "Microsoft Defender - Safe Attachments",
+          "domain": "Defender",
+          "options": [
+            { "id": "A", "text": "Safe Links" },
+            { "id": "B", "text": "Zero Hour Auto Purge (ZAP)" },
+            { "id": "C", "text": "Safe Attachments (Dynamic Delivery)" },
+            { "id": "D", "text": "Anti-Malware filter" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Bij Dynamic Delivery wordt de mail eerst zonder bijlage afgeleverd terwijl de scan in de sandbox loopt; na de scan wordt de bijlage toegevoegd."
+        },
+        {
+          "question": "Voor een onverwacht juridisch onderzoek moet alle data in de mailboxen van de directie per direct en onveranderbaar worden veiliggesteld. De data mag onder geen beding verwijderd of aangepast worden, zelfs niet als gebruikers dit zelf proberen. De oplossing moet onmiddellijk van kracht zijn, volledig transparant voor de gebruiker, en specifiek bedoeld zijn voor juridische procedures, zonder dat de werkzaamheden van de directie worden onderbroken. Welke feature gebruik je?",
+          "context": "Microsoft Purview - Legal Hold",
+          "domain": "Purview",
+          "options": [
+            { "id": "A", "text": "Archive Mailbox" },
+            { "id": "B", "text": "Retention Policy" },
+            { "id": "C", "text": "eDiscovery & Hold (Legal Hold)" },
+            { "id": "D", "text": "Sensitivity Labels" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "In-Place eDiscovery & Hold forceert een \"Hold\" op data, waardoor deze niet verwijderd kan worden, zelfs niet als de gebruiker dat probeert."
+        },
+        {
+          "question": "Er is een conflict tussen twee retention policies. Policy A zegt \"Verwijder na 5 jaar\". Policy B zegt \"Bewaar 7 jaar\". Wat gebeurt er met het document na 6 jaar?",
+          "context": "Microsoft Purview - Retention Policy conflict",
+          "domain": "Purview",
+          "options": [
+            { "id": "A", "text": "Het document wordt verwijderd (Kortste retention wint)." },
+            { "id": "B", "text": "Het document wordt bewaard (Langste bewaartijd wint)." },
+            { "id": "C", "text": "Het document gaat in de prullenbak maar is recoverable." },
+            { "id": "D", "text": "De beheerder moet handmatig kiezen." },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Volgens de Retention principles wint bewaren het van verwijderen, en wint de langste bewaartijd het van de kortere."
+        },
+        {
+          "question": "Je wilt voorkomen dat medewerkers per ongeluk bestanden met creditcardgegevens delen via Teams-chats. Welke technologie zet je in om de gebruiker te waarschuwen (Policy Tip) voordat het bericht verzonden wordt?",
+          "context": "Microsoft Purview - Data Loss Prevention",
+          "domain": "Purview",
+          "options": [
+            { "id": "A", "text": "Sensitivity Labels" },
+            { "id": "B", "text": "Data Loss Prevention (DLP)" },
+            { "id": "C", "text": "Information Barriers" },
+            { "id": "D", "text": "Conditional Access" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "DLP (Data Loss Prevention) kan gevoelige informatie (zoals financiële gegevens) detecteren en gebruikers waarschuwen via Policy Tips voordat ze de regel overtreden."
+        },
+        {
+          "question": "Je organisatie werkt tijdelijk samen met een externe consultant. Deze consultant moet: toegang hebben tot interne Teams en SharePoint, kunnen mailen vanuit een eigen mailbox in jullie tenant, en zichtbaarheid hebben in de globale adreslijst. Welke mailbox/gebruikersobject moet je hiervoor aanmaken?",
+          "context": "Exchange Online - Mailbox types",
+          "domain": "Exchange Online",
+          "options": [
+            { "id": "A", "text": "Guest User" },
+            { "id": "B", "text": "Shared Mailbox" },
+            { "id": "C", "text": "Mailbox User" },
+            { "id": "D", "text": "Mail-Contact" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Alleen een volwaardige mailbox (Mailbox-Enabled User) geeft mailflow + adreslijst. Guest User heeft geen mailbox binnen de tenant. Shared Mailbox en Mail-Enabled Contact bieden onvoldoende functionaliteit."
+        },
+        {
+          "question": "Je beheert een vergaderzaal \"Auditorium\". Je wilt dat medewerkers deze zaal kunnen boeken via hun Outlook-agenda en dat de aanvraag automatisch wordt geaccepteerd als de zaal vrij is. Wat voor type mailbox configureer je?",
+          "context": "Exchange Online - Resource Mailbox",
+          "domain": "Exchange Online",
+          "options": [
+            { "id": "A", "text": "Shared Mailbox" },
+            { "id": "B", "text": "Equipment Mailbox" },
+            { "id": "C", "text": "Room Mailbox" },
+            { "id": "D", "text": "Public Folder" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Resource mailboxes (Room) worden gebruikt voor lokalen en kunnen automatisch inboeken (\"AutoAccept\") configureren."
+        },
+        {
+          "question": "De Research-afdeling en de Sales-afdeling mogen vanwege strikte compliance-regels absoluut niet met elkaar communiceren of bestanden delen via Teams. Welke oplossing implementeer je?",
+          "context": "Microsoft Teams - Information Barriers",
+          "domain": "Teams",
+          "options": [
+            { "id": "A", "text": "Private Channels" },
+            { "id": "B", "text": "Information Barrier Policy" },
+            { "id": "C", "text": "Communication Compliance" },
+            { "id": "D", "text": "Conditional Access" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Information Barrier Policies worden gebruikt om te voorkomen dat specifieke departementen data of communicatie met elkaar uitwisselen."
+        },
+        {
+          "question": "Een gebruiker klaagt dat Teams \"raar doet\": oude chats laden niet meer in of bepaalde tabbladen zijn leeg. Wat is de eerste technische troubleshooting stap die je adviseert (buiten herstarten)?",
+          "context": "Microsoft Teams - Troubleshooting",
+          "domain": "Teams",
+          "options": [
+            { "id": "A", "text": "Teams opnieuw installeren." },
+            { "id": "B", "text": "De Teams Cache clearen (o.a. in %appdata%\\Microsoft\\Teams)." },
+            { "id": "C", "text": "Een nieuwe gebruiker aanmaken." },
+            { "id": "D", "text": "De netwerkkaart resetten." },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Wanneer chats niet laden of zaken niet verschijnen, is het clearen van de cache (Blob_storage, Cache, Databases, etc.) de aangewezen oplossing."
+        },
+        {
+          "question": "Jullie organisatie heeft verschillende losse sites voor HR, IT en Facility. Je wilt deze bundelen onder één gemeenschappelijke navigatiebalk en huisstijl (branding), zonder data te migreren. Wat is de beste architecturale keuze?",
+          "context": "SharePoint - Hub Sites",
+          "domain": "SharePoint",
+          "options": [
+            { "id": "A", "text": "Alles verplaatsen naar één grote Site Collection met subsites." },
+            { "id": "B", "text": "Een Hub Site creëren en de andere sites hiermee associëren." },
+            { "id": "C", "text": "Shortcuts maken in OneDrive." },
+            { "id": "D", "text": "Een Teams-kanaal maken voor elke site." },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Hub Sites zorgen voor een gemeenschappelijke navigatie, branding en zoekfunctie over meerdere geassocieerde sites heen."
+        },
+        {
+          "question": "Een gebruiker heeft 500GB aan bestanden in zijn OneDrive, maar zijn laptop heeft slechts een SSD van 256GB. Hij wil wel al zijn bestanden kunnen zien in Verkenner, maar ze mogen geen schijfruimte innemen tenzij hij ze opent. Welke feature moet actief zijn?",
+          "context": "OneDrive - Files On-Demand",
+          "domain": "OneDrive",
+          "options": [
+            { "id": "A", "text": "Storage Sense" },
+            { "id": "B", "text": "SharePoint Sync" },
+            { "id": "C", "text": "Files On-Demand" },
+            { "id": "D", "text": "Always keep on this device" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Files On-Demand (\"On-demand syncing\") zorgt ervoor dat bestanden zichtbaar zijn zonder ruimte in te nemen, en pas gedownload worden bij gebruik."
+        }
+      ]
+    },
+    "ms365-beheerder-local-gov": {
+      "title": "MS365 Beheerder",
+      "description": "Assessment voor Microsoft 365 beheerders bij lokale overheden. Test je kennis over Exchange Online, SharePoint, Teams, security en compliance specifiek voor gemeenten en provincies.",
+      "role": "Beheerder",
+      "sector": "local-gov",
+      "ctaLinks": [
+        { "label": "MS-102: Microsoft 365 Administrator (5 dagen)", "url": "https://boostmeup.be/opleiding/ms-102-microsoft-365-administrator-5-dagen/" },
+        { "label": "Groei als professioneel Microsoft 365 Beheerder (6 dagen)", "url": "https://boostmeup.be/opleiding/groei-als-professioneel-microsoft-365-beheerder-6-dagen/" }
+      ],
+      "questions": [
+        {
+          "question": "Een gemeentebestuur heeft een complexe on-premises omgeving met meerdere geïsoleerde Active Directory forests voor verschillende departementen (bv. OCMW, Kunstacademie, Bibliotheek) waartussen geen trust-relatie bestaat. Ze willen snel starten met het synchroniseren van gebruikers naar de cloud met minimale infrastructuur. Welke synchronisatietool adviseer je?",
+          "context": "Entra ID - Synchronisatie meerdere forests (Local Gov)",
+          "domain": "Entra ID",
+          "options": [
+            { "id": "A", "text": "Microsoft Entra Connect" },
+            { "id": "B", "text": "Microsoft Entra Cloud Sync" },
+            { "id": "C", "text": "Active Directory Federation Services (ADFS)" },
+            { "id": "D", "text": "Manuele export/import via CSV" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Cloud Sync is ideaal voor meerdere geïsoleerde forests zonder trust-relatie en voor wie minimale infrastructuur wil inzetten."
+        },
+        {
+          "question": "De IT-afdeling van de provincie wil een groep \"Stedenbouwkundigen\" die automatisch up-to-date blijft. Zodra een nieuwe medewerker in dienst komt met de functietitel \"Stedenbouw\", moet deze automatisch lid worden van de groep. Randvoorwaarden: De groep wordt gebruikt voor toegang tot interne applicaties, beheer moet efficiënt zijn, geen periodieke scripts, en functietitel beschikbaar in Entra ID. Welke oplossing voldoet het beste aan deze eisen?",
+          "context": "Entra ID - Dynamische groepen (Local Gov)",
+          "domain": "Entra ID",
+          "options": [
+            { "id": "A", "text": "Security Group met Assigned membership + PowerShell script dat elk uur draait" },
+            { "id": "B", "text": "Microsoft 365 Group met Dynamic User membership, regel: (user.jobTitle -contains \"Stedenbouw\")" },
+            { "id": "C", "text": "Security Group met Dynamic User membership, gebaseerd op jobTitle" },
+            { "id": "D", "text": "Security Group met Dynamic User membership via extensionAttribute gevuld met PowerShell" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Security Group met Dynamic User membership is de beste oplossing. Het lidmaatschap wordt automatisch bijgewerkt zonder scripts, is efficiënt te beheren en werkt direct met jobTitle attributen uit Entra ID."
+        },
+        {
+          "question": "De stad wil Multi-Factor Authenticatie (MFA) afdwingen voor alle medewerkers, behalve wanneer ze zich fysiek in het stadhuis bevinden (vertrouwd IP-adres). Welke feature binnen Entra ID configureer je hiervoor?",
+          "context": "Entra ID - Conditional Access (Local Gov)",
+          "domain": "Entra ID",
+          "options": [
+            { "id": "A", "text": "Identity Protection" },
+            { "id": "B", "text": "Self-Service Password Reset (SSPR)" },
+            { "id": "C", "text": "Conditional Access Policy" },
+            { "id": "D", "text": "Per-user MFA settings" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Conditional Access kan voorwaarden instellen zoals locatie/netwerk voor MFA."
+        },
+        {
+          "question": "De burgemeester meldt dat externe partijen e-mails ontvangen die van hem lijken te komen, maar verzonden zijn vanaf jan.janssens@StadBe1gië.be (met een één). Welke policy moet je finetunen om dit tegen te gaan?",
+          "context": "Microsoft Defender for Office 365 - Impersonation (Local Gov)",
+          "domain": "Defender",
+          "options": [
+            { "id": "A", "text": "Anti-Malware Policy" },
+            { "id": "B", "text": "Anti-Phishing Policy (Impersonation protection)" },
+            { "id": "C", "text": "Safe Links Policy" },
+            { "id": "D", "text": "Anti-Spam Policy (BCL thresholds)" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Anti-Phishing policies bieden specifieke bescherming tegen gebruikers- en domeinimitatie (impersonation), waarbij namen of domeinen worden nagebootst."
+        },
+        {
+          "question": "De communicatieafdeling wil een externe nieuwsbrieftool (bv. GovMail) gebruiken om nieuwsbrieven te versturen namens jullie domein. De gemeente gebruikt Exchange Online. Eisen: Nieuwsbrieven mogen niet in spam terechtkomen, RFC-conform, slechts één SPF-record per domein, en onderhoudsarm en toekomstbestendig. Welke SPF-configuratie is correct?",
+          "context": "Email Security - SPF configuratie (Local Gov)",
+          "domain": "Defender",
+          "options": [
+            { "id": "A", "text": "v=spf1 include:spf.protection.outlook.com -all" },
+            { "id": "B", "text": "v=spf1 include:spf.protection.outlook.com include:_spf.flexmail.eu -all" },
+            { "id": "C", "text": "v=spf1 include:spf.protection.outlook.com ip4:185.35.64.0/22 -all" },
+            { "id": "D", "text": "Twee afzonderlijke TXT-records" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "De juiste SPF-configuratie combineert beide includes in één record. Dit is RFC-conform, onderhoudsarm en toekomstbestendig. Vervang _spf.flexmail.eu door het juiste SPF record van de nieuwsbrieftool."
+        },
+        {
+          "question": "Een medewerker meldt dat een e-mail met een bijlage eerst zonder bijlage verschijnt, en de bijlage een minuut later verschijnt. Welke feature is hier actief?",
+          "context": "Microsoft Defender - Safe Attachments (Local Gov)",
+          "domain": "Defender",
+          "options": [
+            { "id": "A", "text": "Safe Links" },
+            { "id": "B", "text": "Zero Hour Auto Purge (ZAP)" },
+            { "id": "C", "text": "Safe Attachments (Dynamic Delivery)" },
+            { "id": "D", "text": "Anti-Malware filter" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Bij Dynamic Delivery wordt de mail eerst zonder bijlage afgeleverd terwijl de scan in de sandbox loopt; na de scan wordt de bijlage toegevoegd."
+        },
+        {
+          "question": "Er is een onverwacht juridisch onderzoek naar bepaalde dossiers van de gemeenteraad. Alle mailboxen van de burgemeester en schepenen moeten onmiddellijk en onveranderbaar veiliggesteld worden, zonder hun dagelijkse werkzaamheden te onderbreken. Welke feature gebruik je?",
+          "context": "Microsoft Purview - Legal Hold (Local Gov)",
+          "domain": "Purview",
+          "options": [
+            { "id": "A", "text": "Archive Mailbox" },
+            { "id": "B", "text": "Retention Policy" },
+            { "id": "C", "text": "eDiscovery & Hold (Legal Hold)" },
+            { "id": "D", "text": "Sensitivity Labels" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "In-Place eDiscovery & Hold forceert een \"Hold\" op data, waardoor deze niet verwijderd kan worden, zelfs niet als de gebruiker dat probeert."
+        },
+        {
+          "question": "Conflict tussen twee retention policies: A zegt \"Verwijder na 5 jaar\", B zegt \"Bewaar 7 jaar\". Wat gebeurt er na 6 jaar?",
+          "context": "Microsoft Purview - Retention Policy conflict (Local Gov)",
+          "domain": "Purview",
+          "options": [
+            { "id": "A", "text": "Wordt verwijderd" },
+            { "id": "B", "text": "Wordt bewaard" },
+            { "id": "C", "text": "Gaat naar prullenbak, recoverable" },
+            { "id": "D", "text": "Beheerder moet handmatig kiezen" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Volgens de Retention principles wint bewaren het van verwijderen, en wint de langste bewaartijd het van de kortere."
+        },
+        {
+          "question": "Je wilt voorkomen dat medewerkers per ongeluk bestanden met burgersensitieve gegevens delen via Teams. Welke technologie waarschuwt gebruikers voordat ze een regel overtreden?",
+          "context": "Microsoft Purview - Data Loss Prevention (Local Gov)",
+          "domain": "Purview",
+          "options": [
+            { "id": "A", "text": "Sensitivity Labels" },
+            { "id": "B", "text": "Data Loss Prevention (DLP)" },
+            { "id": "C", "text": "Information Barriers" },
+            { "id": "D", "text": "Conditional Access" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "DLP (Data Loss Prevention) kan gevoelige informatie (zoals burgersensitieve gegevens) detecteren en gebruikers waarschuwen via Policy Tips voordat ze de regel overtreden."
+        },
+        {
+          "question": "Een externe consultant werkt tijdelijk voor de gemeente en moet: toegang tot interne Teams en SharePoint, mailen vanuit een mailbox in de tenant, en zichtbaar in de globale adreslijst. Welke mailbox/gebruikersobject maak je aan?",
+          "context": "Exchange Online - Mailbox types (Local Gov)",
+          "domain": "Exchange Online",
+          "options": [
+            { "id": "A", "text": "Guest User" },
+            { "id": "B", "text": "Shared Mailbox" },
+            { "id": "C", "text": "Mailbox User" },
+            { "id": "D", "text": "Mail-Contact" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Alleen een volwaardige mailbox (Mailbox-Enabled User) geeft mailflow + adreslijst. Guest User heeft geen mailbox binnen de tenant. Shared Mailbox en Mail-Enabled Contact bieden onvoldoende functionaliteit."
+        },
+        {
+          "question": "Je beheert een gemeentelijke vergaderzaal \"Raadszaal\". Medewerkers moeten deze automatisch kunnen boeken via Outlook. Wat voor type mailbox configureer je?",
+          "context": "Exchange Online - Resource Mailbox (Local Gov)",
+          "domain": "Exchange Online",
+          "options": [
+            { "id": "A", "text": "Shared Mailbox" },
+            { "id": "B", "text": "Equipment Mailbox" },
+            { "id": "C", "text": "Room Mailbox" },
+            { "id": "D", "text": "Public Folder" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Resource mailboxes (Room) worden gebruikt voor lokalen en kunnen automatisch inboeken (\"AutoAccept\") configureren."
+        },
+        {
+          "question": "De juridische dienst en IT-afdeling mogen vanwege strikte compliance regels niet communiceren of bestanden delen via Teams. Welke oplossing implementeer je?",
+          "context": "Microsoft Teams - Information Barriers (Local Gov)",
+          "domain": "Teams",
+          "options": [
+            { "id": "A", "text": "Private Channels" },
+            { "id": "B", "text": "Information Barrier Policy" },
+            { "id": "C", "text": "Communication Compliance" },
+            { "id": "D", "text": "Conditional Access" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Information Barrier Policies worden gebruikt om te voorkomen dat specifieke departementen data of communicatie met elkaar uitwisselen."
+        },
+        {
+          "question": "Een gebruiker meldt dat Teams oude chats niet laadt en sommige tabbladen leeg zijn. Wat is de eerste troubleshooting stap (buiten herstarten)?",
+          "context": "Microsoft Teams - Troubleshooting (Local Gov)",
+          "domain": "Teams",
+          "options": [
+            { "id": "A", "text": "Teams opnieuw installeren" },
+            { "id": "B", "text": "Teams Cache clearen" },
+            { "id": "C", "text": "Nieuwe gebruiker aanmaken" },
+            { "id": "D", "text": "Netwerkkaart resetten" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Wanneer chats niet laden of zaken niet verschijnen, is het clearen van de cache (Blob_storage, Cache, Databases, etc.) de aangewezen oplossing."
+        },
+        {
+          "question": "De gemeente heeft verschillende intranet-websites voor OCMW, IT en Burgerzaken. Ze willen één gemeenschappelijke navigatie en huisstijl, zonder data te migreren. Wat is de beste architecturale keuze?",
+          "context": "SharePoint - Hub Sites (Local Gov)",
+          "domain": "SharePoint",
+          "options": [
+            { "id": "A", "text": "Alles verplaatsen naar één grote Site Collection met subsites" },
+            { "id": "B", "text": "Een Hub Site creëren en de andere sites hiermee associëren" },
+            { "id": "C", "text": "Shortcuts maken in OneDrive" },
+            { "id": "D", "text": "Een Teams-kanaal maken voor elke site" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Hub Sites zorgen voor een gemeenschappelijke navigatie, branding en zoekfunctie over meerdere geassocieerde sites heen."
+        },
+        {
+          "question": "Een medewerker heeft 500GB bestanden in OneDrive, laptop heeft 256GB SSD. Hij wil alle bestanden zien in Verkenner, zonder ruimte in te nemen tenzij geopend. Welke feature activeer je?",
+          "context": "OneDrive - Files On-Demand (Local Gov)",
+          "domain": "OneDrive",
+          "options": [
+            { "id": "A", "text": "Storage Sense" },
+            { "id": "B", "text": "SharePoint Sync" },
+            { "id": "C", "text": "Files On-Demand" },
+            { "id": "D", "text": "Always keep on this device" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Files On-Demand (\"On-demand syncing\") zorgt ervoor dat bestanden zichtbaar zijn zonder ruimte in te nemen, en pas gedownload worden bij gebruik."
+        }
+      ]
+    },
+    "ict-diensthoofd": {
+      "title": "ICT Diensthoofd",
+      "description": "Assessment voor ICT diensthoofden. Test je kennis over strategisch IT-beheer, budgettering, projectmanagement, security governance en best practices. Focus op strategie en kostenbeheer.",
+      "role": "Management",
+      "sector": "both",
+      "ctaLinks": [
+        { "label": "Groei als professioneel ICT Diensthoofd (4 dagen)", "url": "https://boostmeup.be/opleiding/groei-als-professioneel-ict-diensthoofd-4-dagen/" }
+      ],
+      "questions": [
+        {
+          "question": "Jullie bedrijf groeit internationaal en je wilt een nieuwe applicatie hosten in Azure. De CFO wil een exacte maandelijkse kostenraming per regio. Welke tool gebruik je?",
+          "context": "Azure - Cost Management",
+          "domain": "Azure",
+          "options": [
+            { "id": "A", "text": "Azure TCO Calculator" },
+            { "id": "B", "text": "Azure Pricing Calculator" },
+            { "id": "C", "text": "Azure Cost Management" },
+            { "id": "D", "text": "Azure Advisor" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Vooraf schatten van kosten per regio, service-type en tier."
+        },
+        {
+          "question": "Verschillende afdelingen maken resources aan. Finance wil kosten intern doorbelasten. Hoe regel je dit architecturaal?",
+          "context": "Azure - Governance (Cost & Strategy)",
+          "domain": "Azure",
+          "options": [
+            { "id": "A", "text": "Voor elke afdeling aparte Tenant" },
+            { "id": "B", "text": "Resource Groups + Tags" },
+            { "id": "C", "text": "Iedereen Global Admin" },
+            { "id": "D", "text": "Azure Advisor" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Tags maken interne chargeback mogelijk zonder aparte tenants."
+        },
+        {
+          "question": "Webshop moet 24/7 online blijven, ook bij volledig datacenteruitval. Welke architectuur kies je?",
+          "context": "Azure - Strategy (High Availability)",
+          "domain": "Azure",
+          "options": [
+            { "id": "A", "text": "Availability Sets" },
+            { "id": "B", "text": "Availability Zones" },
+            { "id": "C", "text": "Backup naar tape" },
+            { "id": "D", "text": "Single VM met Premium SSD" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Fysiek gescheiden datacenters binnen regio voorkomen downtime bij uitval."
+        },
+        {
+          "question": "Kosten zijn hoog en Finance vraagt advies om besparingen te realiseren zonder impact op performance. Welke tool raadpleeg je?",
+          "context": "Azure - Cost Optimization",
+          "domain": "Azure",
+          "options": [
+            { "id": "A", "text": "Azure Monitor" },
+            { "id": "B", "text": "Azure Advisor" },
+            { "id": "C", "text": "Azure Pricing Calculator" },
+            { "id": "D", "text": "Service Health Dashboard" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Advisor geeft concrete aanbevelingen voor performance, security en kostenbesparing."
+        },
+        {
+          "question": "De CEO wil weten hoe veilig jullie zijn t.o.v. concurrenten. Welk dashboard open je?",
+          "context": "M365 - Security (Strategie & Security)",
+          "domain": "Microsoft 365",
+          "options": [
+            { "id": "A", "text": "Azure Monitor" },
+            { "id": "B", "text": "Microsoft Secure Score" },
+            { "id": "C", "text": "Compliance Manager" },
+            { "id": "D", "text": "Service Health Dashboard" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Microsoft Secure Score geeft een overzicht van de security posture en vergelijkt deze met andere organisaties."
+        },
+        {
+          "question": "Sales wil onderweg toegang tot apps, maar MFA verplicht buiten kantoor. Welke feature configureer je?",
+          "context": "Entra ID - Security (Identity Strategie)",
+          "domain": "Entra ID",
+          "options": [
+            { "id": "A", "text": "Security Defaults" },
+            { "id": "B", "text": "Per-User MFA" },
+            { "id": "C", "text": "Conditional Access Policies" },
+            { "id": "D", "text": "Firewall regels" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Conditional Access Policies kunnen voorwaarden instellen zoals locatie voor MFA."
+        },
+        {
+          "question": "Managers die inloggen vanaf \"onveilige locaties\" moeten automatisch geblokkeerd of wachtwoord resetten. Welke licentie is minimaal vereist?",
+          "context": "Entra ID - Licensing / Identity Protection",
+          "domain": "Entra ID",
+          "options": [
+            { "id": "A", "text": "Entra ID Free" },
+            { "id": "B", "text": "Entra ID P1" },
+            { "id": "C", "text": "Entra ID P2" },
+            { "id": "D", "text": "Office 365 E3" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Identity Protection met automatische blokkering en wachtwoord reset vereist Entra ID P2."
+        },
+        {
+          "question": "Nieuwe laptops gaan rechtstreeks naar medewerkers en moeten automatisch bedrijfsinstellingen en apps krijgen. Welke technologie gebruik je?",
+          "context": "Intune - Deployment / Device Strategie",
+          "domain": "Intune",
+          "options": [
+            { "id": "A", "text": "SCCM" },
+            { "id": "B", "text": "Windows Autopilot" },
+            { "id": "C", "text": "Golden Image deployment" },
+            { "id": "D", "text": "Group Policy Object" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Windows Autopilot configureert nieuwe devices automatisch zonder handmatige setup."
+        },
+        {
+          "question": "Privé-iPad van medewerker wil je beheren, maar enkel bedrijfsdata. Welke techniek kies je?",
+          "context": "Intune - BYOD / Strategie",
+          "domain": "Intune",
+          "options": [
+            { "id": "A", "text": "MDM" },
+            { "id": "B", "text": "MAM" },
+            { "id": "C", "text": "Kiosk Mode" },
+            { "id": "D", "text": "Hybrid Join" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "MAM (Mobile Application Management) beheert alleen bedrijfsapps en data, niet het hele device."
+        },
+        {
+          "question": "Externe beheerder krijgt tijdelijk SharePoint Admin-rechten voor 2 weken. Welke technologie gebruik je?",
+          "context": "Intune - PIM / JIT Access (Identity Strategie / Governance)",
+          "domain": "Intune",
+          "options": [
+            { "id": "A", "text": "RBAC" },
+            { "id": "B", "text": "PIM (Privileged Identity Management)" },
+            { "id": "C", "text": "MFA" },
+            { "id": "D", "text": "Security Groups" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "PIM (Privileged Identity Management) biedt just-in-time toegang met automatische intrekking na de toegewezen periode."
+        }
+      ]
+    },
+    "ict-diensthoofd-local-gov": {
+      "title": "ICT Diensthoofd",
+      "description": "Assessment voor ICT diensthoofden bij lokale overheden. Test je kennis over strategisch IT-beheer, budgettering, projectmanagement, security governance en best practices specifiek voor gemeenten en provincies.",
+      "role": "Management",
+      "sector": "local-gov",
+      "ctaLinks": [
+        { "label": "Groei als professioneel ICT Diensthoofd (4 dagen)", "url": "https://boostmeup.be/opleiding/groei-als-professioneel-ict-diensthoofd-4-dagen/" }
+      ],
+      "questions": [
+        {
+          "question": "De gemeente wil een nieuwe applicatie hosten in Azure om burgerdiensten online te zetten. De financieel adviseur wil een exacte maandelijkse kostenraming per regio. Welke tool gebruik je?",
+          "context": "Azure - Cost (Cost Management) - Local Gov",
+          "domain": "Azure",
+          "options": [
+            { "id": "A", "text": "Azure TCO Calculator" },
+            { "id": "B", "text": "Azure Pricing Calculator" },
+            { "id": "C", "text": "Azure Cost Management" },
+            { "id": "D", "text": "Azure Advisor" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "De Pricing Calculator laat je vooraf kosten per regio, service-type en tier schatten."
+        },
+        {
+          "question": "Verschillende gemeentelijke afdelingen maken Azure-resources aan. Financiën wil kosten intern doorbelasten per afdeling. Hoe regel je dit architecturaal?",
+          "context": "Azure - Governance (Cost & Strategy) - Local Gov",
+          "domain": "Azure",
+          "options": [
+            { "id": "A", "text": "Voor elke afdeling aparte Tenant" },
+            { "id": "B", "text": "Resource Groups + Tags" },
+            { "id": "C", "text": "Iedereen Global Admin" },
+            { "id": "D", "text": "Azure Advisor" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Tags maken interne chargeback mogelijk zonder aparte tenants."
+        },
+        {
+          "question": "De digitale burgerportaal-applicatie moet 24/7 beschikbaar blijven, ook bij een volledig datacenteruitval. Welke architectuur kies je?",
+          "context": "Azure - Strategy (High Availability) - Local Gov",
+          "domain": "Azure",
+          "options": [
+            { "id": "A", "text": "Availability Sets" },
+            { "id": "B", "text": "Availability Zones" },
+            { "id": "C", "text": "Backup naar tape" },
+            { "id": "D", "text": "Single VM met Premium SSD" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Fysiek gescheiden datacenters binnen regio voorkomen downtime bij uitval."
+        },
+        {
+          "question": "De gemeentelijke cloudkosten lopen op en Financiën vraagt advies om te besparen zonder impact op performance. Welke tool raadpleeg je?",
+          "context": "Azure - Cost Optimization - Local Gov",
+          "domain": "Azure",
+          "options": [
+            { "id": "A", "text": "Azure Monitor" },
+            { "id": "B", "text": "Azure Advisor" },
+            { "id": "C", "text": "Azure Pricing Calculator" },
+            { "id": "D", "text": "Service Health Dashboard" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Advisor geeft concrete aanbevelingen voor kostenbesparing, performance en security."
+        },
+        {
+          "question": "De burgemeester wil weten hoe goed de gemeentelijke IT-beveiliging is vergeleken met andere steden/provincies. Welk dashboard open je?",
+          "context": "M365 - Security - Local Gov",
+          "domain": "Microsoft 365",
+          "options": [
+            { "id": "A", "text": "Azure Monitor" },
+            { "id": "B", "text": "Microsoft Secure Score" },
+            { "id": "C", "text": "Compliance Manager" },
+            { "id": "D", "text": "Service Health Dashboard" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Microsoft Secure Score geeft een overzicht van de security posture en vergelijkt deze met andere organisaties."
+        },
+        {
+          "question": "Medewerkers van het gemeenteloket willen onderweg toegang tot applicaties, maar MFA moet verplicht zijn buiten het gemeentehuis. Welke feature configureer je?",
+          "context": "Entra ID - Security (Identity Strategie) - Local Gov",
+          "domain": "Entra ID",
+          "options": [
+            { "id": "A", "text": "Security Defaults" },
+            { "id": "B", "text": "Per-User MFA" },
+            { "id": "C", "text": "Conditional Access Policies" },
+            { "id": "D", "text": "Firewall regels" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Conditional Access Policies kunnen voorwaarden instellen zoals locatie voor MFA."
+        },
+        {
+          "question": "Managers die inloggen vanaf \"onveilige locaties\" moeten automatisch geblokkeerd worden of een wachtwoord reset uitvoeren. Welke licentie is minimaal vereist?",
+          "context": "Entra ID - Licensing / Identity Protection - Local Gov",
+          "domain": "Entra ID",
+          "options": [
+            { "id": "A", "text": "Entra ID Free" },
+            { "id": "B", "text": "Entra ID P1" },
+            { "id": "C", "text": "Entra ID P2" },
+            { "id": "D", "text": "Office 365 E3" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Identity Protection met automatische blokkering en wachtwoord reset vereist Entra ID P2."
+        },
+        {
+          "question": "Nieuwe laptops worden rechtstreeks naar gemeentemedewerkers gestuurd en moeten automatisch bedrijfsinstellingen en apps krijgen. Welke technologie gebruik je?",
+          "context": "Intune - Deployment / Device Strategie - Local Gov",
+          "domain": "Intune",
+          "options": [
+            { "id": "A", "text": "SCCM" },
+            { "id": "B", "text": "Windows Autopilot" },
+            { "id": "C", "text": "Golden Image deployment" },
+            { "id": "D", "text": "Group Policy Object" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Windows Autopilot configureert nieuwe devices automatisch zonder handmatige setup."
+        },
+        {
+          "question": "Een medewerker wil zijn privé-iPad gebruiken, maar alleen bedrijfsdata moet beheerd worden. Welke techniek kies je?",
+          "context": "Intune - BYOD / Strategie - Local Gov",
+          "domain": "Intune",
+          "options": [
+            { "id": "A", "text": "MDM" },
+            { "id": "B", "text": "MAM" },
+            { "id": "C", "text": "Kiosk Mode" },
+            { "id": "D", "text": "Hybrid Join" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "MAM (Mobile Application Management) beheert alleen bedrijfsapps en data, niet het hele device."
+        },
+        {
+          "question": "Een externe consultant krijgt tijdelijk SharePoint Admin-rechten voor 2 weken binnen de gemeentelijke tenant. Welke technologie gebruik je?",
+          "context": "Intune - PIM / JIT Access (Identity Strategie / Governance) - Local Gov",
+          "domain": "Intune",
+          "options": [
+            { "id": "A", "text": "RBAC" },
+            { "id": "B", "text": "PIM (Privileged Identity Management)" },
+            { "id": "C", "text": "MFA" },
+            { "id": "D", "text": "Security Groups" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "PIM (Privileged Identity Management) biedt just-in-time toegang met automatische intrekking na de toegewezen periode."
+        }
+      ]
+    },
+    "ai-helpdesk": {
+      "title": "AI voor de Helpdeskmedewerker",
+      "description": "Assessment over het gebruik van AI-tools en -technieken voor helpdeskmedewerkers. Test je kennis over AI-assisted troubleshooting, chatbots, en automatisering.",
+      "role": "Helpdesk",
+      "sector": "both",
+      "ctaLinks": [],
+      "questions": [
+        {
+          "question": "Je stuurt naar ChatGPT: \"Hoe kan ik de domain controller op een Windows Server 2022 herstarten?\" Deel je daarmee gevoelige informatie?",
+          "context": "Je wilt snel een procedure vinden en overweegt om ChatGPT te gebruiken.",
+          "domain": "Voorbereiding / Privacy",
+          "options": [
+            { "id": "A", "text": "Nee, je deelt geen gevoelige informatie; het is een algemene technische vraag." },
+            { "id": "B", "text": "Ja, want je bevestigt dat jullie Windows Server 2022 en een domain controller gebruiken." },
+            { "id": "C", "text": "Alleen als je de servernaam of het domein erbij zet." },
+            { "id": "D", "text": "Alleen gevoelig als je het wachtwoord van de server deelt." },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Zelfs zonder servernaam of IP geef je weg dat de organisatie Windows Server 2022 en een DC gebruikt. Dat is infrastructuurinformatie. Voor dit soort vragen gebruik je beter een goedgekeurde, door het bedrijf voorziene tool of interne documentatie, tenzij beleid anders toestaat."
+        },
+        {
+          "question": "Je wilt onderstaande mail naar het Frans vertalen. Welke tool gebruik je het best?\n\nBeste,\nWij zouden graag donderdagmiddag de CRM-applicatie op de server herstarten voor het doorvoeren van de laatste security-update die de vulnerability XXX verhelpt. Gelieve rekening te houden met downtime.",
+          "context": "Vertalen van een mail met bedrijfsinformatie.",
+          "domain": "Privacy & verantwoord gebruik",
+          "options": [
+            { "id": "A", "text": "Mijn persoonlijke ChatGPT-account." },
+            { "id": "B", "text": "Gemini, want dat is de beste vertaler." },
+            { "id": "C", "text": "Microsoft 365 Copilot dat door het bedrijf is voorzien." },
+            { "id": "D", "text": "Een online vertaaltool (bijv. Google Translate, DeepL)." },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "De mail bevat gevoelige bedrijfsinformatie (CRM, server, concrete vulnerability, geplande downtime). Die hoor je niet in persoonlijke of publieke AI-tools te plakken. Microsoft 365 Copilot valt onder jullie tenant en afspraken met de leverancier, en is daarom de verantwoorde keuze."
+        },
+        {
+          "question": "De AI geeft je een PowerShell-commando om een user uit een AD-groep te verwijderen. Wat doe je?",
+          "context": "Je hebt een AI-tool gebruikt om een beheeractie te vinden.",
+          "domain": "Evaluatie",
+          "options": [
+            { "id": "A", "text": "Direct uitvoeren op de productie-omgeving." },
+            { "id": "B", "text": "Output evalueren: klopt de syntax, past het bij jouw omgeving, en test je eerst in een testomgeving of op een niet-kritieke groep." },
+            { "id": "C", "text": "Alleen controleren of het in het Nederlands is." },
+            { "id": "D", "text": "Doorsturen naar een collega zonder zelf te controleren." },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Evaluatie van AI-output is noodzakelijk vóór gebruik, vooral bij beheeracties. Controleer syntax, pas het aan op jouw omgeving en test eerst in een veilige context."
+        },
+        {
+          "question": "Een collega krijgt een foutmelding in jullie interne beheertool. De melding bevat o.a. een request-ID, het pad naar een test-server (bijv. \\\\testenv-app02\\internal) en de melding \"Connection timeout to database\". Hij wil dit in een AI-tool plakken om sneller een oplossing te vinden. Wat is het meest verantwoorde advies?",
+          "context": "Interne foutmelding met omgevingsinformatie.",
+          "domain": "Voorbereiding / Privacy",
+          "options": [
+            { "id": "A", "text": "Het kan, zolang hij geen wachtwoorden of persoonsgegevens in de prompt zet." },
+            { "id": "B", "text": "Request-ID en paden zijn geen persoonsgegevens, dus er is geen risico." },
+            { "id": "C", "text": "Interne foutmeldingen en omgevingsinformatie horen niet in een publieke of niet-goedgekeurde AI-tool; beter een goedgekeurde bedrijfstool gebruiken of alleen een generieke beschrijving geven." },
+            { "id": "D", "text": "Alleen als hij achteraf de chat wist, dan is het verantwoord." },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Foutmeldingen en paden verraden interne architectuur en omgeving. In publieke of niet-goedgekeurde AI loop je risico op datalek en beleidsovertreding. Geen persoonsgegevens betekent niet automatisch geen gevoelige info."
+        },
+        {
+          "question": "Je gebruikt een door het bedrijf goedgekeurde AI-tool om een lange, vertrouwelijke beleidsnota te laten samenvatten. De samenvatting klinkt helder en sluit aan bij wat je van de nota weet. Wat doe je het beste met die samenvatting voordat je die deelt of gebruikt?",
+          "context": "AI-samenvatting van vertrouwelijk document.",
+          "domain": "Evaluatie",
+          "options": [
+            { "id": "A", "text": "Direct gebruiken; de tool is goedgekeurd dus de output is betrouwbaar." },
+            { "id": "B", "text": "Alleen controleren of de belangrijkste conclusies kloppen met het origineel; details zijn minder belangrijk." },
+            { "id": "C", "text": "De samenvatting kritisch nalopen op het origineel (volledigheid, nuance, geen weggelaten waarschuwingen) en alleen dan intern delen of gebruiken." },
+            { "id": "D", "text": "Alleen de eerste alinea van de samenvatting gebruiken, die is meestal het meest accuraat." },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Goedgekeurde tool betekent niet dat elke output foutloos of volledig is. AI kan nuances weglaten of verkeerd samenvatten. Bij beleidsdocumenten is controle op volledigheid en nuance essentieel."
+        }
+      ]
+    },
+    "netwerkbeheerder": {
+      "title": "Netwerkbeheerder",
+      "description": "Assessment voor netwerkbeheerders. Test je kennis over netwerkconfiguratie, routing, switching, security, troubleshooting en best practices.",
+      "role": "Beheerder",
+      "sector": "both",
+      "ctaLinks": [
+        { "label": "Groei als professional Netwerkbeheerder", "url": "https://boostmeup.be/opleidingssoort/groei-als-professional-netwerkbeheerder/" }
+      ],
+      "questions": [
+        {
+          "question": "Je moet twee gebouwen van de campus met elkaar verbinden. De afstand tussen Gebouw A en Gebouw B is 450 meter. Er ligt een kabelgoot onder de grond. Welk type bekabeling moet je voorzien om een stabiele verbinding te garanderen?",
+          "context": "Physical Layer – campusverbinding 450m",
+          "domain": "Network Fundamentals",
+          "options": [
+            { "id": "A", "text": "UTP Cat6 (Koper)" },
+            { "id": "B", "text": "UTP Cat5e (Koper)" },
+            { "id": "C", "text": "Multimode Fiber (Glasvezel)" },
+            { "id": "D", "text": "Coaxiale kabel" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Standaard UTP (koper) bekabeling heeft een maximale lengte van 100 meter. Voor afstanden zoals 450m is glasvezel (Fiber) noodzakelijk."
+        },
+        {
+          "question": "Een medewerker kan niet op internet, maar wel bij de lokale printer. Je vraagt hem om zijn IP-adres te controleren via ipconfig. Hij meldt dat zijn IP-adres 169.254.10.5 is. Wat is de oorzaak?",
+          "context": "TCP/IP – geen internet, wel lokale printer",
+          "domain": "TCP/IP",
+          "options": [
+            { "id": "A", "text": "De DNS server is down." },
+            { "id": "B", "text": "De PC kan de DHCP-server niet bereiken (APIPA)." },
+            { "id": "C", "text": "Er is een IP-conflict met een andere PC." },
+            { "id": "D", "text": "De default gateway is verkeerd ingesteld." },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Een adres in de 169.254.x.x range is een APIPA (Automatic Private IP Addressing) adres. Windows deelt dit zichzelf toe als het geen antwoord krijgt van een DHCP-server."
+        },
+        {
+          "question": "De afdeling \"Sales\" (VLAN 10) en \"HR\" (VLAN 20) zitten verspreid over twee verdiepingen. De Sales-medewerkers op verdieping 1 kunnen perfect communiceren met de Sales-medewerkers op verdieping 2. Echter, wanneer je een nieuwe switch plaatst, lukt dit niet meer. Je controleert de verbinding tussen de switches. Welke configuratie ontbreekt waarschijnlijk op de uplink poort?",
+          "context": "VLANs – Sales/HR over twee verdiepingen",
+          "domain": "VLANs",
+          "options": [
+            { "id": "A", "text": "Port Security" },
+            { "id": "B", "text": "Trunking (802.1Q)" },
+            { "id": "C", "text": "Access Mode" },
+            { "id": "D", "text": "DHCP Snooping" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Om verkeer van meerdere VLANs (zowel 10 als 20) over één kabel tussen switches te sturen, moet de poort geconfigureerd zijn als een \"Trunk\". Een Access poort laat slechts één VLAN door."
+        },
+        {
+          "question": "Een junior technieker ziet een loshangende netwerkkabel en plugt deze in een muurpoort \"voor de zekerheid\". Plotseling gaat het hele netwerk plat en knipperen alle lampjes op de switches als een gek (Broadcast Storm). Welk protocol had geconfigureerd moeten zijn om deze lus (loop) automatisch te blokkeren?",
+          "context": "Spanning Tree – broadcast storm",
+          "domain": "Spanning Tree",
+          "options": [
+            { "id": "A", "text": "OSPF" },
+            { "id": "B", "text": "DHCP" },
+            { "id": "C", "text": "STP (Spanning Tree Protocol)" },
+            { "id": "D", "text": "NAT" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "STP is ontworpen om lussen in Layer 2 netwerken te detecteren en één van de poorten uit te schakelen (Blocking state) om het netwerk te beschermen."
+        },
+        {
+          "question": "Je vervangt een PC van een gebruiker. Je sluit de nieuwe PC aan op dezelfde switchpoort als de oude. Hoe weet de switch dat hij verkeer voor deze nieuwe PC naar deze poort moet sturen?",
+          "context": "Mac Address Table – nieuwe PC, zelfde poort",
+          "domain": "Switching",
+          "options": [
+            { "id": "A", "text": "De switch leert het nieuwe MAC-adres zodra de PC zijn eerste frame verzendt (Source MAC learning)." },
+            { "id": "B", "text": "Je moet het MAC-adres handmatig inkloppen in de switch." },
+            { "id": "C", "text": "De router vertelt het aan de switch via ARP." },
+            { "id": "D", "text": "De switch gebruikt het IP-adres van de PC." },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "A",
+          "explanation": "Switches bouwen hun MAC-adrestabel dynamisch op door te kijken naar het Source MAC address van binnenkomende frames."
+        },
+        {
+          "question": "Een PC in VLAN 10 (192.168.10.5) wil een bestand sturen naar een server in VLAN 20 (192.168.20.10). Beide apparaten zijn aangesloten op dezelfde Layer 2 switch. Waarom lukt de verbinding niet zonder extra hardware?",
+          "context": "Routing – VLAN 10 naar VLAN 20",
+          "domain": "Routing",
+          "options": [
+            { "id": "A", "text": "De switchpoorten staan in de verkeerde snelheid." },
+            { "id": "B", "text": "VLANs zijn gescheiden broadcast domeinen; er is een Router (of Layer 3 switch) nodig om tussen VLANs te routeren." },
+            { "id": "C", "text": "De PC heeft geen IPv6 adres." },
+            { "id": "D", "text": "De kabel is te lang." },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Verkeer tussen verschillende subnetten/VLANs (Inter-VLAN routing) vereist altijd een Layer 3 device (Router of L3 Switch) om de packets over te zetten."
+        },
+        {
+          "question": "Je hebt twee routers verbonden via een kabel. Je configureert OSPF op beide routers zodat ze routes kunnen uitwisselen. Echter, de routers worden geen \"Neighbors\". Je checkt de instellingen. Welke van onderstaande settings moet identiek zijn op beide routers om een OSPF-buurschap te vormen?",
+          "context": "OSPF – routers worden geen neighbors",
+          "domain": "Routing",
+          "options": [
+            { "id": "A", "text": "Router ID" },
+            { "id": "B", "text": "Interface IP adres" },
+            { "id": "C", "text": "Area ID en Subnet Mask" },
+            { "id": "D", "text": "Hostname" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Voor OSPF (Open Shortest Path First) moeten parameters zoals Hello timers, Area ID, Subnet mask en Authentication matchen om een adjacency te vormen."
+        },
+        {
+          "question": "Je verhuist de DHCP-server van het lokale kantoor naar het datacenter in Brussel. De PC's in het kantoor (VLAN 50) krijgen nu geen IP-adres meer, omdat DHCP-aanvragen (Broadcasts) niet door de router gaan. Welk commando moet je op de router-interface van VLAN 50 instellen om de aanvragen door te sturen naar de server in Brussel?",
+          "context": "DHCP Relay – DHCP-server in datacenter",
+          "domain": "IP Services",
+          "options": [
+            { "id": "A", "text": "ip nat inside" },
+            { "id": "B", "text": "ip helper-address <IP van server>" },
+            { "id": "C", "text": "ip dhcp pool" },
+            { "id": "D", "text": "ip route 0.0.0.0 0.0.0.0" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Het ip helper-address commando vangt de lokale UDP broadcasts (DHCP Discover) op en stuurt deze als Unicast door naar de DHCP-server in een ander subnet (DHCP Relay)."
+        },
+        {
+          "question": "Je bedrijf heeft 200 medewerkers die allemaal op internet moeten kunnen surfen. Je hebt van de provider echter maar 1 publiek IP-adres gekregen. Welke technologie op de router zorgt ervoor dat al deze 200 interne privé-adressen dat ene publieke adres kunnen delen?",
+          "context": "NAT – 200 gebruikers, 1 publiek IP",
+          "domain": "IP Services",
+          "options": [
+            { "id": "A", "text": "Static NAT" },
+            { "id": "B", "text": "PAT (Port Address Translation) / NAT Overload" },
+            { "id": "C", "text": "IPv6" },
+            { "id": "D", "text": "DNS" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "PAT (of NAT Overload) mapt meerdere interne IP-adressen naar één publiek IP-adres door gebruik te maken van unieke poortnummers voor elke sessie."
+        },
+        {
+          "question": "Een gebruiker belt: \"Ik kan niet naar www.google.com surfen\". Je vraagt hem om ping 8.8.8.8 te doen, en dat werkt wél. Wat is het probleem?",
+          "context": "DNS – ping op IP werkt, surfen op naam niet",
+          "domain": "IP Services",
+          "options": [
+            { "id": "A", "text": "De internetverbinding ligt eruit." },
+            { "id": "B", "text": "De switch is stuk." },
+            { "id": "C", "text": "Er is een DNS (Domain Name System) probleem." },
+            { "id": "D", "text": "De firewall blokkeert ICMP." },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Als pingen op IP werkt, is de connectiviteit in orde. Als pingen op naam (URL) faalt, kan de computer de naam niet vertalen naar een IP-adres, wat wijst op een DNS-issue."
+        },
+        {
+          "question": "Je wilt voorkomen dat medewerkers hun eigen privé-laptop meebrengen en inpluggen op de netwerkaansluiting van hun bureau. Je configureert de switchpoort zo dat deze enkel het MAC-adres van de bedrijfs-PC accepteert. Als een ander MAC-adres wordt gedetecteerd, moet de poort onmiddellijk uitschakelen. Welke mode gebruik je?",
+          "context": "Port Security – ongeautoriseerde laptop",
+          "domain": "Network Security",
+          "options": [
+            { "id": "A", "text": "violation protect" },
+            { "id": "B", "text": "violation restrict" },
+            { "id": "C", "text": "violation shutdown" },
+            { "id": "D", "text": "storm-control" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "C",
+          "explanation": "Bij Port Security Violation mode \"Shutdown\" wordt de interface volledig uitgeschakeld (err-disabled) zodra een ongeautoriseerd MAC-adres wordt gezien."
+        },
+        {
+          "question": "Je moet op afstand inloggen op een switch om configuraties te wijzigen. Je voorganger gebruikte Telnet. Waarom moet je dit onmiddellijk veranderen naar SSH?",
+          "context": "Management Access – Telnet vs SSH",
+          "domain": "Network Security",
+          "options": [
+            { "id": "A", "text": "SSH is sneller dan Telnet." },
+            { "id": "B", "text": "Telnet verstuurt wachtwoorden in \"plain text\" (leesbaar), SSH versleutelt alles." },
+            { "id": "C", "text": "Telnet werkt niet op Cisco apparatuur." },
+            { "id": "D", "text": "SSH vereist geen gebruikersnaam." },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Telnet is onveilig omdat iedereen met een sniffer (zoals Wireshark) het wachtwoord kan meelezen. SSH (Secure Shell) encrypt de volledige sessie."
+        },
+        {
+          "question": "Je probeert te pingen van PC A naar PC B. Het werkt niet. Je controleert de routing tabel op de router en ziet géén route naar het netwerk van PC B. De interface die verbonden is met dat netwerk is \"Administrativly Down\". Wat betekent dit?",
+          "context": "Troubleshooting – Administratively Down",
+          "domain": "Troubleshooting",
+          "options": [
+            { "id": "A", "text": "De kabel is kapot." },
+            { "id": "B", "text": "De interface is handmatig uitgeschakeld (shutdown commando)." },
+            { "id": "C", "text": "De interface is kapot." },
+            { "id": "D", "text": "De router is aan het herstarten." },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "\"Administratively Down\" betekent dat de beheerder het commando shutdown heeft gegeven. Als het probleem fysiek was (kabel), zou de status \"Down/Down\" zijn."
+        },
+        {
+          "question": "Je logt in op een Cisco switch en wilt weten welk apparaat er aan de andere kant van poort Gi0/1 hangt (bijvoorbeeld een andere Cisco switch of telefoon), inclusief het IP-adres en model. Welk commando gebruik je?",
+          "context": "Discovery Protocols – apparaat aan andere kant poort",
+          "domain": "Troubleshooting",
+          "options": [
+            { "id": "A", "text": "show ip interface brief" },
+            { "id": "B", "text": "show cdp neighbors detail" },
+            { "id": "C", "text": "show version" },
+            { "id": "D", "text": "ping Gi0/1" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "CDP (Cisco Discovery Protocol) of LLDP (Link Layer Discovery Protocol) laat toe om informatie te zien over direct verbonden buren."
+        },
+        {
+          "question": "Je moet een subnet aanmaken voor een Point-to-Point verbinding tussen twee routers. Je wilt zo min mogelijk IP-adressen verspillen. Welk subnetmasker (CIDR) gebruik je dat precies 2 bruikbare IP-adressen biedt?",
+          "context": "Subnetting – P2P tussen routers",
+          "domain": "Subnetting",
+          "options": [
+            { "id": "A", "text": "/24 (255.255.255.0)" },
+            { "id": "B", "text": "/30 (255.255.255.252)" },
+            { "id": "C", "text": "/32 (255.255.255.255)" },
+            { "id": "D", "text": "/29 (255.255.255.248)" },
+            { "id": "E", "text": "Ik weet het niet" }
+          ],
+          "correct": "B",
+          "explanation": "Een /30 subnet biedt precies 2 bruikbare host-adressen (plus netwerk- en broadcastadres) en is de standaard voor point-to-point-verbindingen."
+        }
+      ]
+    }
+  }
+}

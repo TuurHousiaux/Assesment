@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boost je kennis - Assessment</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Open Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: rgb(236, 237, 239);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgb(255, 255, 255);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            border: 3px solid #0a1628;
+        }
+        header {
+            background: #0a1628;
+            color: white;
+            padding: 32px 24px;
+            text-align: center;
+        }
+        header h1 { font-size: 2em; font-weight: 700; }
+        header .subtitle { font-size: 1em; opacity: 0.95; margin-top: 6px; }
+        .screen { display: none; padding: 40px; }
+        .screen.active { display: block; }
+        .intro-content { text-align: center; }
+        .intro-content h2 {
+            color: rgb(7, 10, 19);
+            margin-bottom: 16px;
+            font-size: 1.6em;
+            font-weight: 700;
+        }
+        .intro-content p { margin-bottom: 12px; line-height: 1.6; color: #333; }
+        .intro-content ul { text-align: left; max-width: 560px; margin: 16px auto; line-height: 1.8; }
+        .intro-content li { margin-bottom: 8px; }
+        .sector-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 32px;
+        }
+        .sector-buttons .btn {
+            min-width: 280px;
+            width: 280px;
+            min-height: 56px;
+            padding: 14px 20px;
+            font-size: 1em;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: rgb(221, 55, 37);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .question-counter {
+            text-align: center;
+            color: rgb(7, 10, 19);
+            font-weight: 600;
+            margin-bottom: 24px;
+            font-size: 1em;
+        }
+        .question-item { margin-bottom: 32px; display: none; }
+        .question-item.active { display: block; }
+        .question-item h3 { color: #1a1a1a; margin-bottom: 12px; font-size: 1.2em; line-height: 1.5; }
+        .question-item p { color: #555; margin-bottom: 16px; font-style: italic; font-size: 0.95em; }
+        .options { list-style: none; }
+        .option {
+            margin-bottom: 12px;
+            padding: 14px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: #fafafa;
+            color: #333;
+        }
+        .option:hover {
+            border-color: rgb(221, 55, 37);
+            background: rgba(221, 55, 37, 0.06);
+        }
+        .option.selected {
+            border-color: rgb(221, 55, 37);
+            background: rgba(221, 55, 37, 0.1);
+            font-weight: 600;
+        }
+        .navigation-buttons { display: flex; justify-content: space-between; margin-top: 24px; gap: 12px; }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .btn-primary {
+            background: rgb(221, 55, 37);
+            color: white;
+        }
+        .btn-primary:hover:not(:disabled) { filter: brightness(1.1); transform: translateY(-1px); }
+        .btn-secondary {
+            background: rgb(7, 10, 19);
+            color: white;
+        }
+        .btn-secondary:hover:not(:disabled) { filter: brightness(1.2); transform: translateY(-1px); }
+        .btn-success {
+            background: rgb(221, 55, 37);
+            color: white;
+        }
+        .btn-success:hover { filter: brightness(1.1); transform: translateY(-1px); }
+        .results-content { text-align: center; }
+        .results-content h2 {
+            color: rgb(7, 10, 19);
+            margin-bottom: 24px;
+            font-size: 1.6em;
+            font-weight: 700;
+        }
+        .score-display { margin-bottom: 32px; }
+        .score-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: rgb(221, 55, 37);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            font-weight: 700;
+            margin: 0 auto 16px;
+        }
+        .score-text { font-size: 1.1em; color: #333; }
+        .result-item {
+            text-align: left;
+            margin-bottom: 24px;
+            padding: 16px;
+            border-radius: 10px;
+            background: #f9fafb;
+            border-left: 4px solid #e5e7eb;
+            color: #333;
+        }
+        .result-item.correct { border-left-color: rgb(7, 10, 19); background: rgba(7, 10, 19, 0.06); }
+        .result-item.incorrect { border-left-color: rgb(221, 55, 37); background: rgba(221, 55, 37, 0.06); }
+        .result-item h4 { margin-bottom: 8px; color: #1a1a1a; font-size: 1em; }
+        .result-item .question-text { margin-bottom: 12px; font-weight: 600; color: rgb(7, 10, 19); }
+        .result-item .user-answer, .result-item .correct-answer, .result-item .explanation {
+            margin-bottom: 8px; padding: 10px; background: #fff; border-radius: 6px; font-size: 0.95em;
+        }
+        #user-email {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+        #user-email:focus { outline: none; border-color: rgb(221, 55, 37); }
+        #email-form { max-width: 400px; margin: 24px auto; }
+        .radar-chart-wrapper {
+            margin: 32px 0;
+            padding: 24px;
+            background: #f9fafb;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+        }
+        .radar-chart-wrapper h3 {
+            color: rgb(7, 10, 19);
+            margin-bottom: 16px;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: 700;
+        }
+        .domain-scores {
+            margin-top: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+        }
+        .domain-score-item {
+            padding: 16px;
+            background: #fff;
+            border-radius: 10px;
+            border-left: 4px solid rgb(221, 55, 37);
+            text-align: center;
+            border: 1px solid #e5e7eb;
+            border-left-color: rgb(221, 55, 37);
+        }
+        .domain-score-item h4 { color: #1a1a1a; margin-bottom: 8px; font-size: 1em; }
+        .domain-score-value { font-size: 1.5em; font-weight: 700; color: rgb(221, 55, 37); }
+        .domain-score-bar-wrap { margin-top: 8px; height: 8px; background: #e5e7eb; border-radius: 4px; overflow: hidden; }
+        .domain-score-bar-fill { height: 100%; border-radius: 4px; transition: width 0.4s ease; }
+        .domain-score-meta { margin-top: 6px; font-size: 0.85em; color: #6b7280; }
+        .results-summary-card {
+            background: linear-gradient(145deg, #f9fafb 0%, #fff 100%);
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 28px;
+            text-align: center;
+        }
+        .results-cta {
+            margin-top: 32px;
+            padding: 24px;
+            background: rgba(10, 22, 40, 0.04);
+            border: 2px solid #0a1628;
+            border-radius: 12px;
+        }
+        .results-cta h3 {
+            color: #0a1628;
+            font-size: 1.2em;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+        .results-cta ul { list-style: none; }
+        .results-cta li { margin-bottom: 10px; }
+        .results-cta a {
+            display: inline-block;
+            padding: 10px 18px;
+            background: rgb(221, 55, 37);
+            color: #fff !important;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .results-cta a:hover { background: #b83c2a; transform: translateY(-1px); }
+        .results-cta-overview {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            text-align: center;
+        }
+        .results-cta-overview a {
+            display: inline-block;
+            padding: 12px 24px;
+            background: transparent;
+            color: #0a1628 !important;
+            border: 2px solid #0a1628;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+        }
+        .results-cta-overview a:hover { background: #0a1628; color: #fff !important; transform: translateY(-1px); }
+        .role-section { margin-bottom: 32px; }
+        .role-section h3 {
+            color: rgb(7, 10, 19);
+            margin-bottom: 16px;
+            font-size: 1.2em;
+            font-weight: 700;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .role-section h3 .role-icon {
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(10, 22, 40, 0.08);
+        }
+        .role-section h3 .role-icon svg {
+            width: 22px;
+            height: 22px;
+        }
+        /* Rol-specifieke kleuren */
+        .role-section--helpdesk h3 { border-bottom-color: #0d9488; color: #0f766e; }
+        .role-section--helpdesk h3 .role-icon { background: rgba(13, 148, 136, 0.12); }
+        .role-section--helpdesk h3 .role-icon svg { fill: #0d9488; }
+        .role-section--helpdesk .assessment-card { border-left: 4px solid #0d9488; }
+        .role-section--helpdesk .assessment-card:hover { border-color: #0d9488; background: rgba(13, 148, 136, 0.06); }
+        .role-section--helpdesk .assessment-card strong { color: #0f766e; }
+        .role-section--beheerder h3 { border-bottom-color: #d97706; color: #b45309; }
+        .role-section--beheerder h3 .role-icon { background: rgba(217, 119, 6, 0.12); }
+        .role-section--beheerder h3 .role-icon svg { fill: #d97706; }
+        .role-section--beheerder .assessment-card { border-left: 4px solid #d97706; }
+        .role-section--beheerder .assessment-card:hover { border-color: #d97706; background: rgba(217, 119, 6, 0.06); }
+        .role-section--beheerder .assessment-card strong { color: #b45309; }
+        .role-section--management h3,
+        .role-section--diensthoofd h3 { border-bottom-color: #4f46e5; color: #4338ca; }
+        .role-section--management h3 .role-icon,
+        .role-section--diensthoofd h3 .role-icon { background: rgba(79, 70, 229, 0.12); }
+        .role-section--management h3 .role-icon svg,
+        .role-section--diensthoofd h3 .role-icon svg { fill: #4f46e5; }
+        .role-section--management .assessment-card,
+        .role-section--diensthoofd .assessment-card { border-left: 4px solid #4f46e5; }
+        .role-section--management .assessment-card:hover,
+        .role-section--diensthoofd .assessment-card:hover { border-color: #4f46e5; background: rgba(79, 70, 229, 0.06); }
+        .role-section--management .assessment-card strong,
+        .role-section--diensthoofd .assessment-card strong { color: #4338ca; }
+        .assessment-card {
+            display: block;
+            width: 100%;
+            margin-bottom: 12px;
+            padding: 18px;
+            text-align: left;
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #333;
+            font-weight: inherit;
+        }
+        .assessment-card:hover {
+            border-color: rgb(221, 55, 37);
+            background: rgba(221, 55, 37, 0.06);
+        }
+        .assessment-card strong { color: rgb(7, 10, 19); display: block; margin-bottom: 6px; font-size: 1.05em; }
+        .assessment-card small { color: #555; line-height: 1.5; font-size: 0.9em; }
+        #restart-btn { margin-top: 24px; }
+        @media (max-width: 768px) {
+            .screen { padding: 24px; }
+            .sector-buttons .btn { min-width: 100%; width: 100%; }
+            .navigation-buttons { flex-direction: column; }
+            .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 id="header-title">Boost je kennis</h1>
+        </header>
+
+        <div id="sector-screen" class="screen active">
+            <div class="intro-content">
+                <h2>Waar werk je?</h2>
+                <p>Kies je sector om de beschikbare assessments te bekijken.</p>
+                <div class="sector-buttons">
+                    <button type="button" class="btn btn-primary" data-sector="local-gov">Lokale overheid</button>
+                    <button type="button" class="btn btn-primary" data-sector="kmo">VZW</button>
+                    <button type="button" class="btn btn-primary" data-sector="kmo">Klein of middelgrote onderneming</button>
+                    <button type="button" class="btn btn-primary" data-sector="kmo">Enterprise</button>
+                    <button type="button" class="btn btn-primary" data-sector="kmo">Andere</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="assessment-selection-screen" class="screen">
+            <div class="intro-content">
+                <div id="assessments-list" style="margin-top: 24px;"></div>
+                <button type="button" id="back-to-sector-btn" class="btn btn-secondary" style="margin-top: 24px;">Terug naar sector</button>
+            </div>
+        </div>
+
+        <div id="intro-screen" class="screen">
+            <div class="intro-content">
+                <h2 id="assessment-title">Welkom bij de assessment</h2>
+                <p id="assessment-description"></p>
+                <p><strong>Instructies:</strong></p>
+                <ul>
+                    <li>Lees elke vraag zorgvuldig</li>
+                    <li>Selecteer het antwoord dat je het meest logisch vindt</li>
+                    <li>Je kunt antwoorden aanpassen tot je de test indient</li>
+                    <li>Na het indienen krijg je direct feedback met uitleg</li>
+                </ul>
+                <div style="display: flex; gap: 12px; justify-content: center; margin-top: 24px; flex-wrap: wrap;">
+                    <button type="button" id="start-btn" class="btn btn-primary">Start de test</button>
+                    <button type="button" id="back-to-assessments-btn" class="btn btn-secondary">Terug naar assessments</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="test-screen" class="screen">
+            <div class="progress-bar">
+                <div id="progress" class="progress-fill"></div>
+            </div>
+            <div class="question-counter">
+                <span id="current-question">1</span> / <span id="total-questions">10</span>
+            </div>
+            <div id="questions-container"></div>
+            <div class="navigation-buttons">
+                <button type="button" id="prev-btn" class="btn btn-secondary" disabled>Vorige</button>
+                <button type="button" id="next-btn" class="btn btn-primary">Volgende</button>
+                <button type="button" id="submit-btn" class="btn btn-success" style="display: none;">Test indienen</button>
+            </div>
+        </div>
+
+        <div id="email-screen" class="screen">
+            <div class="intro-content">
+                <h2>E-mailadres</h2>
+                <p>Voer je e-mailadres in om de resultaten te bekijken.</p>
+                <form id="email-form">
+                    <input type="email" id="user-email" placeholder="jouw@email.com" required>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Resultaten bekijken</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="results-screen" class="screen">
+            <div class="results-content">
+                <h2>Resultaten</h2>
+                <div class="results-summary-card score-display">
+                    <div class="score-circle">
+                        <span id="score-percentage">0</span>%
+                    </div>
+                    <p class="score-text">Je hebt <strong id="score-correct">0</strong> van de <strong id="total-questions-score">10</strong> vragen correct beantwoord.</p>
+                </div>
+                <!-- CTA staat tussen algemene score en Score per pijler; zoek op "CTA LINKS" in de <script> om links aan te passen -->
+                <div id="results-cta" class="results-cta"></div>
+                <div id="domain-scores-container"></div>
+                <div id="results-details"></div>
+                <button type="button" id="restart-btn" class="btn btn-primary">Nog een test doen</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let assessments = {};
+        let assessmentStructure = {};
+        let currentSector = null;
+        let currentAssessment = null;
+        let questions = [];
+        let currentQuestion = 0;
+        let answers = {};
+
+        // ========== CTA LINKS – Schrijf je in voor de opleiding ==========
+        // Pas hier de links aan. Je kunt meerdere opleidingen toevoegen.
+        // Optioneel: per assessment andere links in questions.json onder "ctaLinks": [{ "label": "...", "url": "..." }]
+        var ASSESSMENT_CTA_LINKS = [
+            { label: "Opleiding Helpdeskmedewerker", url: "https://www.boostmeup.be/opleidingen" },
+            { label: "Alle opleidingen Boost Me Up", url: "https://www.boostmeup.be" }
+        ];
+        // Knop onder de CTA-lijst: overzicht van alle opleidingen (altijd zichtbaar op resultatenscherm)
+        var OVERVIEW_CTA_LINK = { label: "Bekijk alle opleidingen", url: "https://www.boostmeup.be/opleidingen" };
+        // ==========
+
+        function getBaseUrl() {
+            const param = new URLSearchParams(window.location.search).get('base');
+            if (param) return param.replace(/\/$/, '');
+            if (typeof window.ASSESSMENT_BASE_URL === 'string') return window.ASSESSMENT_BASE_URL.replace(/\/$/, '');
+            return '';
+        }
+
+        function fetchWithTimeout(url, ms) {
+            var ctrl = new AbortController();
+            var t = setTimeout(function() { ctrl.abort(); }, ms);
+            return fetch(url, { signal: ctrl.signal }).finally(function() { clearTimeout(t); });
+        }
+
+        async function loadQuestions() {
+            var base = getBaseUrl();
+            var urlsToTry = [];
+            if (base) {
+                urlsToTry.push(base + '/questions.json');
+            } else {
+                try {
+                    urlsToTry.push(new URL('questions.json', window.location.href).href);
+                } catch (e) {}
+                urlsToTry.push('questions.json');
+            }
+            for (var i = 0; i < urlsToTry.length; i++) {
+                var url = urlsToTry[i] + (urlsToTry[i].indexOf('?') >= 0 ? '&' : '?') + 'v=' + Date.now();
+                try {
+                    var response = await fetchWithTimeout(url, 8000);
+                    if (response && response.ok) {
+                        var data = await response.json();
+                        if (data && data.assessments && typeof data.assessments === 'object' && Object.keys(data.assessments).length > 0) {
+                            assessments = data.assessments;
+                            assessmentStructure = (data.assessmentStructure && typeof data.assessmentStructure === 'object') ? data.assessmentStructure : {};
+                            return;
+                        }
+                    }
+                } catch (e) {
+                    if (i === urlsToTry.length - 1) console.warn('questions.json niet geladen, gebruik fallback:', e);
+                }
+            }
+            /* Fallback bij 404, netwerkfout of lege data */
+            try {
+            assessmentStructure = {
+                'local-gov': {
+                    'Helpdesk': ['public-lokale-overheid', 'helpdesk-vervolg', 'ai-helpdesk'],
+                    'Beheerder': ['intune-beheerder', 'azure-beheerder', 'ms365-beheerder-local-gov', 'netwerkbeheerder'],
+                    'Diensthoofd': ['ict-diensthoofd-local-gov']
+                },
+                'kmo': {
+                    'Helpdesk': ['helpdesk-kmo', 'helpdesk-vervolg', 'ai-helpdesk'],
+                    'Beheerder': ['intune-beheerder', 'azure-beheerder', 'ms365-beheerder', 'netwerkbeheerder'],
+                    'Management': ['ict-diensthoofd']
+                }
+            };
+            var demoQ = [
+                { question: 'Demo vraag?', context: 'Context', domain: 'Algemeen', options: [{ id: 'A', text: 'Antwoord A' }, { id: 'B', text: 'Antwoord B' }], correct: 'A', explanation: 'Uitleg.' }
+            ];
+            assessments = {
+                'public-lokale-overheid': { title: 'Helpdeskmedewerker (lokale overheid)', description: 'Demo. Laad questions.json voor volledige vragen.', role: 'Helpdesk', sector: 'local-gov', questions: demoQ },
+                'helpdesk-kmo': { title: 'Helpdeskmedewerker', description: 'Demo. Laad questions.json voor volledige vragen (KMO/VZW).', role: 'Helpdesk', sector: 'kmo', questions: demoQ },
+                'helpdesk-vervolg': { title: 'Helpdeskmedewerker Vervolg', description: 'Demo. Laad questions.json voor volledige vragen.', role: 'Helpdesk', sector: 'both', questions: demoQ },
+                'ai-helpdesk': { title: 'AI voor de Helpdesk', description: 'Demo. Laad questions.json voor volledige vragen.', role: 'Helpdesk', sector: 'both', questions: demoQ },
+                'intune-beheerder': { title: 'Intune Beheerder', description: 'Demo. Laad questions.json voor volledige vragen.', role: 'Beheerder', sector: 'both', questions: demoQ },
+                'azure-beheerder': { title: 'Azure Beheerder', description: 'Demo. Laad questions.json voor volledige vragen.', role: 'Beheerder', sector: 'both', questions: demoQ },
+                'ms365-beheerder': { title: 'MS365 Beheerder', description: 'Demo. Laad questions.json voor volledige vragen.', role: 'Beheerder', sector: 'both', questions: demoQ },
+                'ms365-beheerder-local-gov': { title: 'MS365 Beheerder (lokale overheid)', description: 'Demo. Laad questions.json voor volledige vragen.', role: 'Beheerder', sector: 'local-gov', questions: demoQ },
+                'netwerkbeheerder': { title: 'Netwerkbeheerder', description: 'Demo. Laad questions.json voor volledige vragen.', role: 'Beheerder', sector: 'both', questions: demoQ },
+                'ict-diensthoofd': { title: 'ICT Diensthoofd', description: 'Demo. Laad questions.json voor volledige vragen.', role: 'Management', sector: 'both', questions: demoQ },
+                'ict-diensthoofd-local-gov': { title: 'ICT Diensthoofd (lokale overheid)', description: 'Demo. Laad questions.json voor volledige vragen.', role: 'Diensthoofd', sector: 'local-gov', questions: demoQ }
+            };
+            } catch (fallbackErr) {
+                console.error('Fallback vragen laden mislukt:', fallbackErr);
+                assessmentStructure = { 'kmo': { 'Helpdesk': ['helpdesk-vervolg'], 'Beheerder': ['ms365-beheerder'], 'Management': ['ict-diensthoofd'] } };
+                assessments = { 'helpdesk-vervolg': { title: 'Demo', description: 'Laad questions.json in dezelfde map als dit bestand.', role: 'Helpdesk', sector: 'both', questions: [{ question: 'Demo?', context: '', domain: 'Algemeen', options: [{ id: 'A', text: 'A' }, { id: 'B', text: 'B' }], correct: 'A', explanation: '' }] }, 'ms365-beheerder': { title: 'Demo', description: 'Laad questions.json in dezelfde map.', role: 'Beheerder', sector: 'both', questions: [{ question: 'Demo?', context: '', domain: 'Algemeen', options: [{ id: 'A', text: 'A' }, { id: 'B', text: 'B' }], correct: 'A', explanation: '' }] }, 'ict-diensthoofd': { title: 'Demo', description: 'Laad questions.json in dezelfde map.', role: 'Management', sector: 'both', questions: [{ question: 'Demo?', context: '', domain: 'Algemeen', options: [{ id: 'A', text: 'A' }, { id: 'B', text: 'B' }], correct: 'A', explanation: '' }] } };
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            await loadQuestions();
+
+            document.querySelectorAll('.sector-buttons [data-sector]').forEach(btn => {
+                btn.addEventListener('click', () => showAssessmentSelection(btn.getAttribute('data-sector')));
+            });
+            document.getElementById('back-to-sector-btn').addEventListener('click', showSectorSelection);
+            document.getElementById('back-to-assessments-btn').addEventListener('click', () => {
+                if (currentSector) showAssessmentSelection(currentSector);
+            });
+            document.getElementById('start-btn').addEventListener('click', startTest);
+            document.getElementById('prev-btn').addEventListener('click', showPreviousQuestion);
+            document.getElementById('next-btn').addEventListener('click', showNextQuestion);
+            document.getElementById('submit-btn').addEventListener('click', submitTest);
+            document.getElementById('restart-btn').addEventListener('click', restartTest);
+        });
+
+        function showSectorSelection() {
+            currentSector = null;
+            currentAssessment = null;
+            hideAllScreens();
+            document.getElementById('sector-screen').classList.add('active');
+        }
+
+        function getRoleIconSvg(role) {
+            var svgs = {
+                'Helpdesk': '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 1c-2.76 0-5 2.24-5 5v3H5c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h2v2c0 .55.45 1 1 1h8c.55 0 1-.45 1-1v-2h2c.55 0 1-.45 1-1v-6c0-.55-.45-1-1-1h-2V6c0-2.76-2.24-5-5-5zm0 2c1.66 0 3 1.34 3 3v3H9V6c0-1.66 1.34-3 3-3z"/></svg>',
+                'Beheerder': '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97 0-.33-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1 0 .33.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.66z"/></svg>',
+                'Management': '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>',
+                'Diensthoofd': '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>'
+            };
+            return svgs[role] || svgs['Beheerder'];
+        }
+        function showAssessmentSelection(sector) {
+            currentSector = sector;
+            hideAllScreens();
+            const selectionScreen = document.getElementById('assessment-selection-screen');
+            selectionScreen.classList.add('active');
+            const list = document.getElementById('assessments-list');
+            list.innerHTML = '';
+            const structure = assessmentStructure[sector] || {};
+            const roleOrder = sector === 'local-gov' ? ['Helpdesk', 'Beheerder', 'Diensthoofd'] : ['Helpdesk', 'Beheerder', 'Management'];
+            roleOrder.forEach(role => {
+                const assessmentIds = structure[role] || [];
+                const available = assessmentIds.filter(id => {
+                    const a = assessments[id];
+                    return a && (a.sector === sector || a.sector === 'both') && a.questions && a.questions.length > 0;
+                });
+                if (available.length === 0) return;
+                const section = document.createElement('div');
+                section.className = 'role-section role-section--' + role.toLowerCase();
+                const roleHeader = document.createElement('h3');
+                roleHeader.innerHTML = '<span class="role-icon">' + getRoleIconSvg(role) + '</span> ' + role.toUpperCase();
+                section.appendChild(roleHeader);
+                available.forEach(assessmentId => {
+                    const a = assessments[assessmentId];
+                    const card = document.createElement('button');
+                    card.type = 'button';
+                    card.className = 'btn assessment-card';
+                    card.innerHTML = '<strong>' + a.title + '</strong><small>' + a.description + '</small>';
+                    card.addEventListener('click', () => selectAssessment(assessmentId));
+                    section.appendChild(card);
+                });
+                list.appendChild(section);
+            });
+        }
+
+        function selectAssessment(assessmentId) {
+            currentAssessment = assessmentId;
+            const a = assessments[assessmentId];
+            if (!a) return;
+            questions = a.questions;
+            currentQuestion = 0;
+            answers = {};
+            document.getElementById('assessment-title').textContent = a.title;
+            document.getElementById('assessment-description').textContent = a.description;
+            document.getElementById('header-title').textContent = a.title;
+            var sub = document.getElementById('header-subtitle');
+            if (sub) sub.textContent = a.description;
+            hideAllScreens();
+            document.getElementById('intro-screen').classList.add('active');
+        }
+
+        function hideAllScreens() {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        }
+
+        function startTest() {
+            if (!currentAssessment || !questions.length) return;
+            hideAllScreens();
+            document.getElementById('test-screen').classList.add('active');
+            document.getElementById('total-questions').textContent = questions.length;
+            renderQuestions();
+            updateProgress();
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questions-container');
+            container.innerHTML = '';
+            questions.forEach((q, index) => {
+                const div = document.createElement('div');
+                div.className = 'question-item' + (index === currentQuestion ? ' active' : '');
+                div.id = 'question-' + index;
+                div.innerHTML = '<h3>' + q.question + '</h3><p>' + (q.context || '') + '</p><ul class="options">' +
+                    q.options.map(opt => '<li class="option' + (answers[index] === opt.id ? ' selected' : '') + '" data-option="' + opt.id + '">' +
+                        '<input type="radio" name="q' + index + '" id="q' + index + '-' + opt.id + '" value="' + opt.id + '"' + (answers[index] === opt.id ? ' checked' : '') + '> ' +
+                        '<label for="q' + index + '-' + opt.id + '"><strong>' + opt.id + '.</strong> ' + opt.text + '</label></li>').join('') + '</ul>';
+                container.appendChild(div);
+            });
+            container.querySelectorAll('.option').forEach(opt => {
+                opt.addEventListener('click', function() {
+                    const idx = parseInt(this.closest('.question-item').id.split('-')[1], 10);
+                    this.closest('.question-item').querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+                    this.classList.add('selected');
+                    this.querySelector('input').checked = true;
+                    answers[idx] = this.dataset.option;
+                    updateNavigationButtons();
+                });
+            });
+            updateNavigationButtons();
+        }
+
+        function showPreviousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                updateQuestionDisplay();
+                updateProgress();
+            }
+        }
+
+        function showNextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                updateQuestionDisplay();
+                updateProgress();
+            }
+        }
+
+        function updateQuestionDisplay() {
+            document.querySelectorAll('.question-item').forEach((el, i) => {
+                el.classList.toggle('active', i === currentQuestion);
+            });
+            document.getElementById('current-question').textContent = currentQuestion + 1;
+            updateNavigationButtons();
+        }
+
+        function updateProgress() {
+            document.getElementById('progress').style.width = ((currentQuestion + 1) / questions.length) * 100 + '%';
+            document.getElementById('current-question').textContent = currentQuestion + 1;
+        }
+
+        function updateNavigationButtons() {
+            const prev = document.getElementById('prev-btn');
+            const next = document.getElementById('next-btn');
+            const submit = document.getElementById('submit-btn');
+            prev.disabled = currentQuestion === 0;
+            if (currentQuestion === questions.length - 1) {
+                next.style.display = 'none';
+                submit.style.display = 'block';
+            } else {
+                next.style.display = 'block';
+                submit.style.display = 'none';
+            }
+        }
+
+        function submitTest() {
+            const missing = questions.length - Object.keys(answers).length;
+            if (missing > 0 && !confirm('Je hebt nog ' + missing + ' vraag/vragen niet beantwoord. Toch doorgaan?')) return;
+            showEmailScreen();
+        }
+
+        function showEmailScreen() {
+            hideAllScreens();
+            document.getElementById('email-screen').classList.add('active');
+            const form = document.getElementById('email-form');
+            const input = document.getElementById('user-email');
+            input.value = '';
+            form.onsubmit = function(e) {
+                e.preventDefault();
+                const email = input.value.trim();
+                if (email && email.indexOf('@') !== -1) {
+                    window.userEmail = email;
+                    showResults();
+                } else {
+                    alert('Voer een geldig e-mailadres in.');
+                }
+            };
+        }
+
+        function showResults() {
+            hideAllScreens();
+            document.getElementById('results-screen').classList.add('active');
+            let correctCount = 0;
+            const domainScores = {};
+            questions.forEach(q => {
+                if (q.domain && !domainScores[q.domain]) domainScores[q.domain] = { correct: 0, total: 0 };
+            });
+            const resultsContainer = document.getElementById('results-details');
+            resultsContainer.innerHTML = '';
+            questions.forEach((q, index) => {
+                const userAnswer = answers[index] || 'Niet beantwoord';
+                const isCorrect = userAnswer === q.correct && userAnswer !== 'E';
+                if (isCorrect) correctCount++;
+                if (q.domain && domainScores[q.domain]) {
+                    domainScores[q.domain].total++;
+                    if (isCorrect) domainScores[q.domain].correct++;
+                }
+                const userText = q.options.find(o => o.id === userAnswer);
+                const correctText = q.options.find(o => o.id === q.correct);
+                const item = document.createElement('div');
+                item.className = 'result-item ' + (isCorrect ? 'correct' : 'incorrect');
+                item.innerHTML = '<h4>Vraag ' + (index + 1) + ' – ' + (q.domain || 'Algemeen') + '</h4>' +
+                    '<div class="question-text">' + q.question + '</div>' +
+                    '<div class="user-answer"><span class="answer-label">Je antwoord:</span> <strong>' + userAnswer + '.</strong> ' + (userText ? userText.text : 'Niet beantwoord') + (isCorrect ? ' ✅' : ' ❌') + '</div>' +
+                    (!isCorrect && correctText ? '<div class="correct-answer">Correct: <strong>' + q.correct + '.</strong> ' + correctText.text + '</div>' : '') +
+                    '<div class="explanation">' + (q.explanation || '') + '</div>';
+                resultsContainer.appendChild(item);
+            });
+            const percentage = Math.round((correctCount / questions.length) * 100);
+            document.getElementById('score-percentage').textContent = percentage;
+            document.getElementById('score-correct').textContent = correctCount;
+            document.getElementById('total-questions-score').textContent = questions.length;
+            renderDomainScores(domainScores);
+            renderResultsCta(domainScores);
+        }
+
+        function renderResultsCta() {
+            const ctaEl = document.getElementById('results-cta');
+            if (!ctaEl) return;
+            const assessment = currentAssessment && assessments[currentAssessment] ? assessments[currentAssessment] : null;
+            const links = (assessment && assessment.ctaLinks && assessment.ctaLinks.length > 0)
+                ? assessment.ctaLinks
+                : (typeof ASSESSMENT_CTA_LINKS !== 'undefined' && ASSESSMENT_CTA_LINKS.length > 0 ? ASSESSMENT_CTA_LINKS : []);
+            var target = (typeof window !== 'undefined' && window.self !== window.top) ? '_top' : '_blank';
+            var rel = target === '_blank' ? ' rel="noopener noreferrer"' : '';
+            var overviewHtml = (typeof OVERVIEW_CTA_LINK !== 'undefined' && OVERVIEW_CTA_LINK && (OVERVIEW_CTA_LINK.url || '').trim())
+                ? '<div class="results-cta-overview"><a href="' + (OVERVIEW_CTA_LINK.url || '#').trim() + '" target="' + target + '"' + rel + '>' + (OVERVIEW_CTA_LINK.label || 'Bekijk alle opleidingen').trim() + '</a></div>'
+                : '';
+            if (links.length === 0) {
+                ctaEl.innerHTML = overviewHtml ? '<h3>Opleidingen</h3>' + overviewHtml : '';
+                return;
+            }
+            ctaEl.innerHTML = '<h3>Schrijf je nu in voor de opleiding:</h3><ul>' +
+                links.map(function(l) {
+                    var url = (l.url || '').trim() || '#';
+                    var label = (l.label || l.text || 'Opleiding').trim();
+                    return '<li><a href="' + url + '" target="' + target + '"' + rel + '>' + label + '</a></li>';
+                }).join('') +
+                '</ul>' + overviewHtml;
+        }
+
+        function renderDomainScores(domainScores) {
+            var container = document.getElementById('domain-scores-container');
+            if (!container) return;
+            container.innerHTML = '';
+            var wrapper = document.createElement('div');
+            wrapper.className = 'radar-chart-wrapper';
+            wrapper.innerHTML = '<h3>Score per pijler</h3>';
+            var scoresList = document.createElement('div');
+            scoresList.className = 'domain-scores';
+            var colors = { 'Netwerken': 'rgb(7, 10, 19)', 'Active Directory': 'rgb(221, 55, 37)', 'File Servers': 'rgb(221, 55, 37)', 'DNS': 'rgb(7, 10, 19)', 'Troubleshooting': 'rgb(221, 55, 37)', 'PowerShell': 'rgb(7, 10, 19)', 'WiFi': 'rgb(7, 10, 19)', 'Microsoft 365': 'rgb(221, 55, 37)', 'Intune': 'rgb(221, 55, 37)', 'Azure': 'rgb(7, 10, 19)', 'Entra ID': 'rgb(221, 55, 37)', 'Defender': 'rgb(221, 55, 37)', 'Purview': 'rgb(7, 10, 19)', 'Exchange Online': 'rgb(7, 10, 19)', 'Teams': 'rgb(221, 55, 37)', 'SharePoint': 'rgb(7, 10, 19)', 'OneDrive': 'rgb(221, 55, 37)', 'AI': 'rgb(221, 55, 37)', 'Algemeen': 'rgb(7, 10, 19)' };
+            Object.keys(domainScores).forEach(function(domain) {
+                var s = domainScores[domain];
+                var pct = s.total > 0 ? Math.round((s.correct / s.total) * 100) : 0;
+                var barColor = colors[domain] || 'rgb(221, 55, 37)';
+                var el = document.createElement('div');
+                el.className = 'domain-score-item';
+                el.style.borderLeftColor = barColor;
+                el.innerHTML = '<h4>' + domain + '</h4>' +
+                    '<div class="domain-score-bar-wrap"><div class="domain-score-bar-fill" style="width:' + pct + '%;background:' + barColor + '"></div></div>' +
+                    '<div class="domain-score-meta">' + pct + '% &nbsp;·&nbsp; ' + s.correct + '/' + s.total + ' correct</div>';
+                scoresList.appendChild(el);
+            });
+            wrapper.appendChild(scoresList);
+            container.appendChild(wrapper);
+        }
+
+        function restartTest() {
+            currentQuestion = 0;
+            answers = {};
+            document.getElementById('header-title').textContent = 'Boost je kennis';
+            var subEl = document.getElementById('header-subtitle');
+            if (subEl) subEl.textContent = 'Waar werk je? Kies je sector om te beginnen.';
+            hideAllScreens();
+            document.getElementById('sector-screen').classList.add('active');
+        }
+    </script>
+</body>
+</html>
