@@ -1,0 +1,6 @@
+{
+  "navigationFallback": {
+    "rewrite": "/boostmeup-assessment-frame.html",
+    "exclude": ["/questions.json", "/*.json", "/*.png", "/*.ico"]
+  }
+}
